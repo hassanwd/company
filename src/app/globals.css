@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #fafafa;
   --foreground: #171717;
+  --card: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --destructive: #dc2626;
+  --success: #16a34a;
+  --ring: #6366f1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #131316;
+    --muted: #1c1c20;
+    --muted-foreground: #a1a1aa;
+    --border: #27272a;
+    --primary: #6366f1;
+    --primary-foreground: #ffffff;
+    --destructive: #ef4444;
+    --success: #22c55e;
+    --ring: #818cf8;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Marketing backgrounds */
+.bg-hero {
+  background:
+    radial-gradient(
+      60rem 28rem at 85% -10%,
+      color-mix(in oklab, var(--primary) 18%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      40rem 20rem at 0% 0%,
+      color-mix(in oklab, var(--primary) 8%, transparent),
+      transparent 70%
+    );
+}
+
+.bg-cta {
+  background:
+    radial-gradient(30rem 16rem at 100% 0%, rgb(255 255 255 / 0.18), transparent 70%),
+    radial-gradient(24rem 14rem at 0% 100%, rgb(0 0 0 / 0.2), transparent 70%);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
