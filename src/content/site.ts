@@ -19,10 +19,11 @@ export const SITE = {
 export type NavLink = { label: string; href: Route };
 
 export const MAIN_NAV: NavLink[] = [
+  { label: "Proof of concept", href: "/engagement" },
   { label: "Platform", href: "/platform" },
+  { label: "Cloud & Infra", href: "/cloud-infra" as Route },
   { label: "Security", href: "/security" },
   { label: "How we work", href: "/how-we-work" },
-  { label: "Engagement", href: "/engagement" },
   { label: "About", href: "/about" },
 ];
 
@@ -41,7 +42,7 @@ export const FOOTER_NAV: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "About", href: "/about" },
       { label: "How we work", href: "/how-we-work" },
-      { label: "Engagement", href: "/engagement" },
+      { label: "Proof of concept", href: "/engagement" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -49,6 +50,7 @@ export const FOOTER_NAV: { title: string; links: NavLink[] }[] = [
     title: "Trust",
     links: [
       { label: "Platform", href: "/platform" },
+      { label: "Cloud & Infra", href: "/cloud-infra" as Route },
       { label: "Security & compliance", href: "/security" },
       { label: "Privacy policy", href: "/privacy" },
       { label: "Terms of service", href: "/terms" },

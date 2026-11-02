@@ -1,7 +1,8 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ClipboardCheck, Flag, Hammer, Plug } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
+  AgentRunPreview,
   CheckList,
   CtaBanner,
   Faq,
@@ -16,6 +17,7 @@ import {
   COMMITMENTS,
   GENERAL_FAQS,
   PLATFORM_FEATURES,
+  POC_WEEKS,
   PROCESS,
 } from "@/content/company";
 import { SITE } from "@/content/site";
@@ -27,6 +29,9 @@ export const metadata: Metadata = {
   description: SITE.description,
   alternates: { canonical: "/" },
 };
+
+/** One icon per proof-of-concept week, in the same order as POC_WEEKS. */
+const POC_ICONS = [Plug, Hammer, ClipboardCheck, Flag];
 
 export default function HomePage() {
   const organization = {
@@ -62,7 +67,7 @@ export default function HomePage() {
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <Button asChild size="lg">
-                <Link href="/contact">Book a demo</Link>
+                <Link href="/engagement">Start a 1-month proof of concept</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="/solutions">
@@ -71,8 +76,63 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
+          <div className="mt-14">
+            <AgentRunPreview />
+          </div>
         </Container>
       </div>
+
+      {/* Proof of concept banner */}
+      <Container className="pt-10">
+        <div className="bg-primary text-primary-foreground grid gap-10 rounded-2xl p-8 sm:p-12 lg:grid-cols-[2fr_3fr]">
+          <div>
+            <p className="text-sm font-semibold tracking-wide text-white/80 uppercase">
+              Proof of concept
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+              See it work on your own data in 1 month
+            </h2>
+            <p className="mt-4 text-white/85">
+              One workflow, a clear go / no-go decision, and an introductory price below typical
+              market rates.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {["4 weeks", "1 workflow", "Go / no-go decision"].map((chip) => (
+                <li key={chip} className="rounded-full bg-white/15 px-3 py-1 text-sm font-medium">
+                  {chip}
+                </li>
+              ))}
+            </ul>
+            <Button
+              asChild
+              size="lg"
+              variant="secondary"
+              className="mt-8 bg-white text-neutral-900 hover:bg-white/90"
+            >
+              <Link href="/engagement">
+                See the proof of concept <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </Button>
+          </div>
+          <ol className="relative flex flex-col gap-6">
+            <span className="absolute top-5 bottom-5 left-5 w-px bg-white/30" aria-hidden />
+            {POC_WEEKS.map(({ title, description }, index) => {
+              const Icon = POC_ICONS[index];
+              return (
+                <li key={title} className="relative flex gap-4">
+                  <span className="text-primary relative flex size-10 shrink-0 items-center justify-center rounded-full bg-white">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="font-semibold">{title}</h3>
+                    <p className="mt-1 text-sm text-white/80">{description}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      </Container>
 
       {/* Value strip */}
       <Container className="py-10">

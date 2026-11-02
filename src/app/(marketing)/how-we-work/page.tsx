@@ -60,7 +60,7 @@ export default function HowWeWorkPage() {
 
       <CtaBanner
         title="Start with a discovery conversation"
-        secondary={{ label: "Engagement models", href: "/engagement" }}
+        secondary={{ label: "Proof of concept", href: "/engagement" }}
       />
     </>
   );

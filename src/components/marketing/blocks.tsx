@@ -1,4 +1,4 @@
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, FileText, ShieldCheck } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -128,19 +128,22 @@ export function CtaBanner({
   return (
     <section className="py-16 sm:py-20">
       <Container>
-        <div className="bg-primary text-primary-foreground relative overflow-hidden rounded-2xl px-6 py-14 text-center sm:px-12">
-          <div className="bg-cta absolute inset-0" aria-hidden />
-          <div className="relative mx-auto max-w-2xl">
-            <h2 className="text-3xl font-semibold tracking-tight text-balance">{title}</h2>
-            <p className="mt-4 text-lg text-pretty text-white/85">{description}</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="bg-primary text-primary-foreground grid gap-10 overflow-hidden rounded-2xl p-8 sm:p-12 lg:grid-cols-[3fr_2fr] lg:items-center">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+              {title}
+            </h2>
+            <p className="mt-4 max-w-xl text-lg text-pretty text-white/85">{description}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
               <Button
                 asChild
                 size="lg"
                 variant="secondary"
                 className="bg-white text-neutral-900 hover:bg-white/90"
               >
-                <Link href={primary.href}>{primary.label}</Link>
+                <Link href={primary.href}>
+                  {primary.label} <ArrowRight className="size-4" aria-hidden />
+                </Link>
               </Button>
               {secondary ? (
                 <Button
@@ -154,9 +157,77 @@ export function CtaBanner({
               ) : null}
             </div>
           </div>
+          <div className="rounded-xl bg-white/10 p-6">
+            <p className="text-sm font-semibold tracking-wide text-white/80 uppercase">
+              In your working session
+            </p>
+            <ul className="mt-4 flex flex-col gap-3">
+              {[
+                "Map your highest-value workflows",
+                "See agents running on a workflow like yours",
+                "Leave with a plan, timeline and fixed fee",
+              ].map((item) => (
+                <li key={item} className="flex gap-3 text-sm">
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-white text-neutral-900">
+                    <Check className="size-3" aria-hidden />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </Container>
     </section>
+  );
+}
+
+/** Static preview of an agent run, used on the home page to show the human approval step. */
+export function AgentRunPreview() {
+  const steps = [
+    ["Read the NDA", "12 pages, 6 key terms extracted"],
+    ["Compared to your playbook", "3 deviations found, 1 critical"],
+    ["Drafted redlines", "Each change comes with its reasoning"],
+  ];
+  return (
+    <div className="border-border bg-card mx-auto max-w-2xl rounded-2xl border p-5 text-left shadow-lg sm:p-6">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <span className="bg-primary/10 text-primary flex size-9 items-center justify-center rounded-lg">
+            <FileText className="size-4" aria-hidden />
+          </span>
+          <div>
+            <p className="text-sm font-semibold">Contract Review Agent</p>
+            <p className="text-muted-foreground text-xs">Inbound NDA · Acme Supplies</p>
+          </div>
+        </div>
+        <span className="bg-success/10 text-success rounded-full px-2.5 py-1 text-xs font-medium">
+          Ready for review
+        </span>
+      </div>
+      <ul className="mt-5 flex flex-col gap-3">
+        {steps.map(([title, detail]) => (
+          <li key={title} className="flex gap-3">
+            <span className="bg-success/10 text-success mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
+              <Check className="size-3" aria-hidden />
+            </span>
+            <div className="text-sm">
+              <p className="font-medium">{title}</p>
+              <p className="text-muted-foreground">{detail}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="border-border bg-muted mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3">
+        <span className="flex items-center gap-2 text-sm font-medium">
+          <ShieldCheck className="text-primary size-4" aria-hidden />
+          Waiting for attorney approval
+        </span>
+        <span className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-xs font-medium">
+          Review redlines
+        </span>
+      </div>
+    </div>
   );
 }
 

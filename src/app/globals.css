@@ -42,12 +42,6 @@ body {
   background: transparent;
 }
 
-.bg-cta {
-  background:
-    radial-gradient(30rem 16rem at 100% 0%, rgb(255 255 255 / 0.18), transparent 70%),
-    radial-gradient(24rem 14rem at 0% 100%, rgb(0 0 0 / 0.2), transparent 70%);
-}
-
 html {
   scroll-behavior: smooth;
 }

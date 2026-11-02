@@ -5,8 +5,13 @@ import {
   Cloud,
   FileSearch,
   FlaskConical,
+  Gauge,
+  GitBranch,
+  Globe,
   KeyRound,
+  Lock,
   Network,
+  Server,
   ShieldCheck,
   UserCheck,
   type LucideIcon,
@@ -121,6 +126,82 @@ export const DEPLOYMENT_OPTIONS: { title: string; description: string; points: s
       "Customer-managed models",
       "Change control to your process",
     ],
+  },
+];
+
+export const INFRA_FEATURES: Feature[] = [
+  {
+    title: "Tenant isolation",
+    description:
+      "Dedicated, single-tenant environments with separate networks, storage and credentials per customer.",
+    icon: Server,
+  },
+  {
+    title: "Data residency",
+    description:
+      "Choose the region where data is processed and stored, and keep it there, to meet jurisdictional and client requirements.",
+    icon: Globe,
+  },
+  {
+    title: "Private networking",
+    description:
+      "Private endpoints, VPC peering and no public exposure for the model, data and integration paths that need it.",
+    icon: Lock,
+  },
+  {
+    title: "Your keys",
+    description:
+      "Customer-managed encryption keys and secrets held in your own key management service.",
+    icon: KeyRound,
+  },
+  {
+    title: "Infrastructure as code",
+    description:
+      "Repeatable, reviewable deployments defined in code, so every change goes through your normal approval process.",
+    icon: GitBranch,
+  },
+  {
+    title: "Scale & resilience",
+    description:
+      "Autoscaling, backups and disaster-recovery practices designed around enterprise availability expectations.",
+    icon: Gauge,
+  },
+];
+
+export const INFRA_PLATFORMS: string[] = [
+  "Amazon Web Services",
+  "Microsoft Azure",
+  "Google Cloud",
+  "Kubernetes & containers",
+  "Private cloud & on-premises",
+  "Air-gapped environments",
+];
+
+export const INFRA_STEPS: Step[] = [
+  {
+    title: "Assess",
+    description:
+      "We review your cloud footprint, network and security requirements, and agree the target environment.",
+  },
+  {
+    title: "Provision",
+    description:
+      "The environment is created with infrastructure as code, in your account or ours, following your standards.",
+  },
+  {
+    title: "Connect",
+    description:
+      "Identity, private networking and links to your systems are set up with least-privilege access.",
+  },
+  {
+    title: "Harden & review",
+    description:
+      "Security testing, logging and monitoring are verified and your security team signs off before go-live.",
+  },
+  {
+    title: "Operate",
+    description:
+      "Updates, monitoring and incident response run through your change process, or we run them for you.",
   },
 ];
 
@@ -265,36 +346,13 @@ export const TEAM_ROLES: { title: string; description: string }[] = [
   { title: "Customer success", description: "Drive adoption, training and measured outcomes." },
 ];
 
-export const ENGAGEMENT_MODELS: {
+/** What we deliver after the proof of concept. */
+export const DELIVERY_MODELS: {
   name: string;
   summary: string;
   bestFor: string;
   includes: string[];
-  highlight?: boolean;
 }[] = [
-  {
-    name: "Discovery sprint",
-    summary: "A focused assessment that turns possibilities into a prioritised, costed plan.",
-    bestFor: "Teams exploring where agents fit.",
-    includes: [
-      "Workflow and data assessment",
-      "Use-case prioritisation",
-      "Risk and compliance review",
-      "Pilot proposal",
-    ],
-  },
-  {
-    name: "Pilot",
-    summary: "One workflow, built on your real data and measured against agreed success criteria.",
-    bestFor: "Proving value before wider commitment.",
-    includes: [
-      "One to two production-grade agents",
-      "Evaluation against your benchmarks",
-      "Reviewer workflow and approvals",
-      "Security review",
-    ],
-    highlight: true,
-  },
   {
     name: "Production",
     summary: "Full rollout across teams with integrations, governance and enterprise support.",
