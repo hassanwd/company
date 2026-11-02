@@ -18,7 +18,12 @@ const envSchema = z.object({
   /** Reserved for a database sink. No database driver is bundled yet; see .env.example. */
   DATABASE_URL: z.string().optional(),
   /** Plausible/Umami site domain. Analytics load only when this is set. */
-  NEXT_PUBLIC_ANALYTICS_DOMAIN: z.string().optional(),
+  NEXT_PUBLIC_ANALYTICS_DOMAIN: z
+    .string()
+    .trim()
+    .regex(/^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$/i, "must be a bare domain such as example.com")
+    .optional()
+    .or(z.literal("")),
 });
 
 const parsed = envSchema.safeParse(process.env);
@@ -31,6 +36,9 @@ if (!parsed.success) {
 export const env = parsed.data;
 export const isProd = env.NODE_ENV === "production";
 export const siteUrl = env.SITE_URL.replace(/\/$/, "");
+/** Site domain for cookie-less analytics, or undefined when analytics is off. */
+export const analyticsDomain = env.NEXT_PUBLIC_ANALYTICS_DOMAIN || undefined;
+
 export const consoleEnabled = env.ENABLE_CONSOLE ? env.ENABLE_CONSOLE === "true" : !isProd;
 
 const clean = (value: string | undefined) => value?.trim() || undefined;

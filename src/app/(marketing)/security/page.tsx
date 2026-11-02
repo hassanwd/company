@@ -10,13 +10,14 @@ import {
   SECURITY_REVIEW_STEPS,
 } from "@/content/company";
 import { SITE } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Security & compliance",
   description:
     "Enterprise-grade security for agentic AI: data protection, access control, auditability, responsible AI and flexible deployment for regulated industries.",
-  alternates: { canonical: "/security" },
-};
+  path: "/security",
+});
 
 export default function SecurityPage() {
   return (
@@ -28,12 +29,18 @@ export default function SecurityPage() {
         actions={
           <>
             <Button asChild size="lg">
-              <a href={`mailto:${SITE.securityEmail}?subject=Security%20package%20request`}>
+              <a
+                href={`mailto:${SITE.securityEmail}?subject=Security%20package%20request`}
+                data-cta="security-package"
+              >
                 Request security package
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href={{ pathname: "/contact", query: { topic: "security" } }}>
+              <Link
+                href={{ pathname: "/contact", query: { topic: "security" } }}
+                data-cta="security-message"
+              >
                 Or send us a message
               </Link>
             </Button>

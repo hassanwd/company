@@ -9,6 +9,7 @@ import {
   SolutionCard,
   Steps,
 } from "@/components/marketing/blocks";
+import { JsonLd } from "@/components/marketing/json-ld";
 import { Container, Eyebrow, Section } from "@/components/marketing/primitives";
 import { LogoStrip, ProofSection } from "@/components/marketing/proof";
 import { Button } from "@/components/ui/button";
@@ -16,33 +17,30 @@ import { AGENT_LOOP, BEFORE_AFTER, COMMITMENTS, GENERAL_FAQS, POC_WEEKS } from "
 import { CASE_STUDIES, CUSTOMER_LOGOS, TESTIMONIALS } from "@/content/proof";
 import { SITE } from "@/content/site";
 import { SOLUTIONS, solutionHref } from "@/content/solutions";
-import { siteUrl } from "@/server/config/env";
+import { pageMetadata } from "@/lib/seo";
+import { faqLd, organizationLd } from "@/lib/structured-data";
+
+const HOME_TITLE = `${SITE.name} — Agentic AI for law, finance, healthcare and retail`;
 
 export const metadata: Metadata = {
-  title: { absolute: `${SITE.name} — Agentic AI for law, finance, healthcare and retail` },
-  description: SITE.description,
-  alternates: { canonical: "/" },
+  ...pageMetadata({
+    title: HOME_TITLE,
+    fullTitle: HOME_TITLE,
+    description: SITE.description,
+    path: "/",
+  }),
+  title: { absolute: HOME_TITLE },
 };
 
 /** One icon per proof-of-concept week, in the same order as POC_WEEKS. */
 const POC_ICONS = [Plug, Hammer, ClipboardCheck, Flag];
 
-export default function HomePage() {
-  const organization = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE.name,
-    url: siteUrl,
-    description: SITE.description,
-    email: SITE.email,
-  };
+const FAQS = GENERAL_FAQS.slice(0, 5);
 
+export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={[organizationLd(), faqLd(FAQS)]} />
 
       {/* Hero */}
       <div className="border-border relative overflow-hidden border-b">
@@ -62,10 +60,12 @@ export default function HomePage() {
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <Button asChild size="lg">
-                <Link href="/contact">Book a demo</Link>
+                <Link href="/contact" data-cta="hero">
+                  Book a demo
+                </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="/proof-of-concept">
+                <Link href="/proof-of-concept" data-cta="hero-poc">
                   See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
                 </Link>
               </Button>
@@ -174,7 +174,7 @@ export default function HomePage() {
                 variant="secondary"
                 className="mt-8 bg-white text-neutral-900 hover:bg-white/90"
               >
-                <Link href="/proof-of-concept">
+                <Link href="/proof-of-concept" data-cta="poc-banner">
                   See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
                 </Link>
               </Button>
@@ -234,7 +234,7 @@ export default function HomePage() {
         description="Can't find yours? We're happy to talk it through."
       >
         <div className="max-w-3xl">
-          <Faq items={GENERAL_FAQS.slice(0, 5)} />
+          <Faq items={FAQS} />
         </div>
       </Section>
 

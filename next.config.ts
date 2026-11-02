@@ -2,15 +2,21 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== "production";
 
+// Cookie-less Plausible analytics. Allowed in the CSP only when the domain env var is set.
+const analyticsEnabled = /^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$/i.test(
+  process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN?.trim() ?? "",
+);
+const analyticsOrigin = analyticsEnabled ? " https://plausible.io" : "";
+
 // NOTE: 'unsafe-inline' is required for Next.js inline bootstrap scripts without a per-request
 // nonce. Move to a nonce-based CSP if you need to drop it (forces dynamic rendering).
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline'${analyticsOrigin}${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""}`,
+  `connect-src 'self'${analyticsOrigin}${isDev ? " ws: wss:" : ""}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

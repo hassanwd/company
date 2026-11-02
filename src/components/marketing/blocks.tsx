@@ -148,7 +148,7 @@ export function CtaBanner({
                 variant="secondary"
                 className="bg-white text-neutral-900 hover:bg-white/90"
               >
-                <Link href={primary.href}>
+                <Link href={primary.href} data-cta="cta-banner">
                   {primary.label} <ArrowRight className="size-4" aria-hidden />
                 </Link>
               </Button>
@@ -159,7 +159,9 @@ export function CtaBanner({
                   variant="ghost"
                   className="text-white hover:bg-white/10 hover:text-white"
                 >
-                  <Link href={secondary.href}>{secondary.label}</Link>
+                  <Link href={secondary.href} data-cta="cta-banner-secondary">
+                    {secondary.label}
+                  </Link>
                 </Button>
               ) : null}
             </div>

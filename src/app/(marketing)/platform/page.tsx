@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { CheckList, CtaBanner, FeatureGrid, Steps } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { AGENT_LOOP, DEPLOYMENT_OPTIONS, PLATFORM_FEATURES } from "@/content/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Platform",
   description:
     "A governed agent platform: orchestration, grounded knowledge, integrations, human-in-the-loop approvals, evaluation, observability and flexible deployment.",
-  alternates: { canonical: "/platform" },
-};
+  path: "/platform",
+});
 
 export default function PlatformPage() {
   return (

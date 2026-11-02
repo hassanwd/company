@@ -2,6 +2,7 @@ import { BadgeCheck } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckList, CtaBanner, Faq, Steps } from "@/components/marketing/blocks";
+import { JsonLd } from "@/components/marketing/json-ld";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,24 +14,29 @@ import {
   PROCESS,
 } from "@/content/company";
 import { SITE } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
+import { faqLd } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Proof of concept",
   description:
     "Start with a 4-week proof of concept on your own data, then scale to production and optionally let us run it. Fixed fee, agreed up front.",
-  alternates: { canonical: "/proof-of-concept" },
-};
+  path: "/proof-of-concept",
+});
 
 export default function ProofOfConceptPage() {
   return (
     <>
+      <JsonLd data={faqLd(POC_FAQS)} />
       <PageHero
         eyebrow="Proof of concept"
         title="Start with a 4-week proof of concept"
         description="Every engagement begins the same way: one workflow, your own data and a clear decision at the end. After that, we show you exactly what we deliver and how."
         actions={
           <Button asChild size="lg">
-            <Link href="/contact">Book a demo</Link>
+            <Link href="/contact" data-cta="poc-hero">
+              Book a demo
+            </Link>
           </Button>
         }
       />
@@ -74,7 +80,9 @@ export default function ProofOfConceptPage() {
               go / no-go decision.
             </p>
             <Button asChild className="mt-6">
-              <Link href="/contact">Book a demo</Link>
+              <Link href="/contact" data-cta="poc-pricing">
+                Book a demo
+              </Link>
             </Button>
           </div>
         </div>

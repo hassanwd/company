@@ -3,12 +3,13 @@ import { CtaBanner } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { PRINCIPLES } from "@/content/company";
 import { SITE } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description: `Why ${SITE.name} exists and the principles we build agentic AI on.`,
-  alternates: { canonical: "/about" },
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

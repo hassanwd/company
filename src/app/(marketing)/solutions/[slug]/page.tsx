@@ -3,9 +3,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckList, CtaBanner, Faq, Steps } from "@/components/marketing/blocks";
+import { JsonLd } from "@/components/marketing/json-ld";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { Button } from "@/components/ui/button";
 import { getSolution, SOLUTIONS } from "@/content/solutions";
+import { pageMetadata } from "@/lib/seo";
+import { breadcrumbLd, faqLd, serviceLd } from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return SOLUTIONS.map(({ slug }) => ({ slug }));
@@ -16,11 +19,11 @@ export async function generateMetadata({
 }: PageProps<"/solutions/[slug]">): Promise<Metadata> {
   const solution = getSolution((await params).slug);
   if (!solution) return {};
-  return {
+  return pageMetadata({
     title: `${solution.name} solutions`,
     description: `${solution.headline}. ${solution.summary}`,
-    alternates: { canonical: `/solutions/${solution.slug}` },
-  };
+    path: `/solutions/${solution.slug}`,
+  });
 }
 
 export default async function SolutionPage({ params }: PageProps<"/solutions/[slug]">) {
@@ -29,6 +32,17 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
 
   return (
     <>
+      <JsonLd
+        data={[
+          serviceLd(solution),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Solutions", path: "/solutions" },
+            { name: solution.name, path: `/solutions/${solution.slug}` },
+          ]),
+          faqLd(solution.faqs),
+        ]}
+      />
       <PageHero
         eyebrow={`${solution.name} solutions`}
         title={solution.headline}
@@ -36,7 +50,10 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
         actions={
           <>
             <Button asChild size="lg">
-              <Link href={{ pathname: "/contact", query: { industry: solution.slug } }}>
+              <Link
+                href={{ pathname: "/contact", query: { industry: solution.slug } }}
+                data-cta="solution-hero"
+              >
                 Book a demo
               </Link>
             </Button>

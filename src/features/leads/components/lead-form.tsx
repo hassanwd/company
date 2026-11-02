@@ -9,6 +9,7 @@ import { SelectField, TextareaField, TextField } from "@/components/shared/form/
 import { FormError } from "@/components/shared/form/form-error";
 import { Button } from "@/components/ui/button";
 import { ActionError, unwrap } from "@/lib/action-result";
+import { track } from "@/lib/analytics";
 import { submitLeadAction } from "../actions";
 import { COMPANY_SIZES, INDUSTRIES, leadInputSchema, type LeadInput } from "../schemas";
 
@@ -40,6 +41,7 @@ export function LeadForm({
 
   const submit = useMutation({
     mutationFn: (values: LeadInput) => unwrap(submitLeadAction(values)),
+    onSuccess: (_data, values) => track("lead_submitted", { industry: values.industry || "none" }),
     onError: (error) => {
       if (error instanceof ActionError && error.fieldErrors) {
         for (const [field, messages] of Object.entries(error.fieldErrors)) {

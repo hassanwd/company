@@ -131,7 +131,9 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <Button asChild className="hidden sm:inline-flex">
-            <Link href="/contact">Book a demo</Link>
+            <Link href="/contact" data-cta="header">
+              Book a demo
+            </Link>
           </Button>
           <Button
             variant="ghost"
@@ -178,7 +180,9 @@ export function SiteHeader() {
               </Link>
             ))}
             <Button asChild className="mt-4">
-              <Link href="/contact">Book a demo</Link>
+              <Link href="/contact" data-cta="mobile-menu">
+                Book a demo
+              </Link>
             </Button>
           </Container>
         </nav>

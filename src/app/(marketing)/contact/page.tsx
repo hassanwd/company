@@ -3,13 +3,14 @@ import type { Metadata } from "next";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { LeadForm } from "@/features/leads/components/lead-form";
 import { SITE } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Book a demo",
   description:
     "Book a working session with our solution architects to map your highest-value legal, financial, healthcare or retail workflows.",
-  alternates: { canonical: "/contact" },
-};
+  path: "/contact",
+});
 
 const NEXT_STEPS = [
   "We review your request and match you with a solution architect.",

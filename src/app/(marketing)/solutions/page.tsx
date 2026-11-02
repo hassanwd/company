@@ -6,6 +6,7 @@ import { PageHero, Section } from "@/components/marketing/primitives";
 import { Button } from "@/components/ui/button";
 import { PLATFORM_FEATURES } from "@/content/company";
 import { SOLUTIONS } from "@/content/solutions";
+import { pageMetadata } from "@/lib/seo";
 
 /** The platform capabilities every solution shares, in the order they are shown. */
 const SHARED_PILLAR_TITLES = ["Human-in-the-loop", "Guardrails & policy", "Observability & audit"];
@@ -13,12 +14,12 @@ const SHARED_PILLARS = SHARED_PILLAR_TITLES.flatMap((title) =>
   PLATFORM_FEATURES.filter((feature) => feature.title === title),
 );
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Solutions",
   description:
     "Governed AI agents for law, finance, healthcare and retail — contract review, transaction monitoring, demand forecasting and more.",
-  alternates: { canonical: "/solutions" },
-};
+  path: "/solutions",
+});
 
 export default function SolutionsPage() {
   return (

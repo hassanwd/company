@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { CheckList, CtaBanner } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { PROCESS, TEAM_ROLES } from "@/content/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "How we work",
   description:
     "Our end-to-end delivery model: discover, design, build and pilot, deploy, then operate and improve — with one accountable team.",
-  alternates: { canonical: "/how-we-work" },
-};
+  path: "/how-we-work",
+});
 
 export default function HowWeWorkPage() {
   return (

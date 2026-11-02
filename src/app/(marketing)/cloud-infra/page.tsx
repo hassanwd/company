@@ -8,13 +8,14 @@ import {
   INFRA_PLATFORMS,
   INFRA_STEPS,
 } from "@/content/company";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Cloud & Infra",
   description:
     "Run governed AI agents in managed cloud, your own cloud account or a restricted environment, with private networking, your keys and data residency.",
-  alternates: { canonical: "/cloud-infra" },
-};
+  path: "/cloud-infra",
+});
 
 export default function CloudInfraPage() {
   return (

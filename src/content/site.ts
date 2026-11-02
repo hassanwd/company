@@ -25,6 +25,8 @@ export const SITE = {
   bookingUrl: "" as string,
   // TODO: starting price for the 4-week proof of concept, e.g. "$20,000". Leave empty to hide.
   pocStartingPrice: "" as string,
+  // Bump when page content changes materially; used for sitemap <lastmod>.
+  lastUpdated: "2026-11-03",
   // TODO: social profile URLs (LinkedIn, X, GitHub) used for structured data.
   sameAs: [] as string[],
 } as const;

@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Prose } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { SITE } from "@/content/site";
+import { analyticsDomain } from "@/server/config/env";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacy policy",
   description: `How ${SITE.name} collects, uses and protects personal information.`,
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (
@@ -36,10 +38,19 @@ export default function PrivacyPage() {
               and pages requested, used for security and reliability.
             </li>
           </ul>
-          <p>
-            This website does not use advertising or analytics cookies, and does not track you
-            across other sites.
-          </p>
+          {analyticsDomain ? (
+            <p>
+              This website does not use advertising cookies and does not track you across other
+              sites. We measure traffic with Plausible, a cookie-less analytics service: it sets no
+              cookies, does not store your IP address and collects no personal data. It records page
+              views and which calls to action are used, so we can improve the site.
+            </p>
+          ) : (
+            <p>
+              This website does not use advertising or analytics cookies, and does not track you
+              across other sites.
+            </p>
+          )}
 
           <h2>How we use it</h2>
           <ul>

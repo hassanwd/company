@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Prose } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { SITE } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Terms of service",
   description: `Terms governing use of the ${SITE.name} website.`,
-  alternates: { canonical: "/terms" },
-};
+  path: "/terms",
+});
 
 export default function TermsPage() {
   return (
