@@ -7,7 +7,7 @@ import { SITE } from "@/content/site";
 export const metadata: Metadata = {
   title: "Book a demo",
   description:
-    "Book a working session with our solution architects to map your highest-value legal, financial or healthcare workflows.",
+    "Book a working session with our solution architects to map your highest-value legal, financial, healthcare or retail workflows.",
   alternates: { canonical: "/contact" },
 };
 

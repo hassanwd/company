@@ -255,7 +255,7 @@ export const TEAM_ROLES: { title: string; description: string }[] = [
   },
   {
     title: "Domain specialists",
-    description: "Bring legal, financial and healthcare operating experience.",
+    description: "Bring legal, financial, healthcare and retail operating experience.",
   },
   { title: "Agent engineers", description: "Build, evaluate and harden the agents." },
   {
@@ -319,6 +319,39 @@ export const ENGAGEMENT_MODELS: {
   },
 ];
 
+/** The four-week proof of concept shown on the engagement page. */
+export const POC_WEEKS: Step[] = [
+  {
+    title: "Week 1 · Set up",
+    description:
+      "Connect to the agreed data and systems, confirm the workflow and success metric, and design the approval steps with your reviewers.",
+  },
+  {
+    title: "Week 2 · Build",
+    description:
+      "Build the agent for one workflow against your data, with guardrails and human approval gates in place from the start.",
+  },
+  {
+    title: "Week 3 · Evaluate",
+    description:
+      "Your reviewers use it on real cases while we measure accuracy, time saved and escalations against your benchmarks.",
+  },
+  {
+    title: "Week 4 · Decide",
+    description:
+      "We present the results and a go / no-go recommendation, with a written plan and estimate for taking it to production.",
+  },
+];
+
+export const POC_TERMS: string[] = [
+  "One workflow and one success metric, agreed before we start",
+  "Four weeks from the day data and system access are ready",
+  "Starts on sample or sandbox data where approvals for live data are pending",
+  "A person approves every consequential action",
+  "Introductory fixed fee, priced below typical market rates and agreed up front",
+  "A clear go / no-go decision at the end, with no obligation to continue",
+];
+
 export const GENERAL_FAQS: Faq[] = [
   {
     question: "What does “agentic” actually mean?",
@@ -338,7 +371,7 @@ export const GENERAL_FAQS: Faq[] = [
   {
     question: "How long until we see value?",
     answer:
-      "We start with one well-chosen workflow and a measured pilot, so you see real results on your own data before committing to a broader rollout. The timeline depends on integrations and review requirements, which we scope together in discovery.",
+      "We start with one well-chosen workflow and a measured pilot, so you see real results on your own data before committing to a broader rollout. A proof of concept runs four weeks from the day data and system access are ready; how long access takes depends on your security and review requirements, which we scope together up front.",
   },
   {
     question: "Can you work with our existing systems and AI models?",
@@ -361,7 +394,7 @@ export const PRINCIPLES: { title: string; description: string }[] = [
   {
     title: "Domain first",
     description:
-      "Law, finance and healthcare each have their own rules and risks. We start from the workflow, not from the model.",
+      "Law, finance, healthcare and retail each have their own rules and risks. We start from the workflow, not from the model.",
   },
   {
     title: "Secure by default",

@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #b4b4bb;
-  --foreground: #2e2e36;
-  --card: #c8c8ce;
-  --muted: #b0b0b8;
-  --muted-foreground: #44444d;
-  --border: #8e8e98;
+  --background: #ffffff;
+  --foreground: #171717;
+  --card: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
   --primary: #4f46e5;
   --primary-foreground: #ffffff;
-  --destructive: #b91c1c;
-  --success: #166534;
+  --destructive: #dc2626;
+  --success: #16a34a;
   --ring: #6366f1;
   color-scheme: light;
 }
@@ -39,17 +39,7 @@ body {
 
 /* Marketing backgrounds */
 .bg-hero {
-  background:
-    radial-gradient(
-      60rem 28rem at 85% -10%,
-      color-mix(in oklab, var(--primary) 18%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      40rem 20rem at 0% 0%,
-      color-mix(in oklab, var(--primary) 8%, transparent),
-      transparent 70%
-    );
+  background: transparent;
 }
 
 .bg-cta {

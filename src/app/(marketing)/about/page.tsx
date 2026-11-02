@@ -16,7 +16,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="Making AI agents trustworthy enough for the work that matters"
-        description="Law, finance and healthcare run on trust, evidence and accountability. We build agents that respect all three."
+        description="Law, finance, healthcare and retail run on trust, evidence and accountability. We build agents that respect all three."
       />
 
       <Section
@@ -30,8 +30,8 @@ export default function AboutPage() {
           </p>
           <p>
             We build agents that take on that work reliably and transparently, so lawyers, finance
-            teams and care teams can spend their time on judgment, relationships and outcomes — with
-            the evidence to show how every result was produced.
+            teams, care teams and merchants can spend their time on judgment, relationships and
+            outcomes — with the evidence to show how every result was produced.
           </p>
         </div>
       </Section>

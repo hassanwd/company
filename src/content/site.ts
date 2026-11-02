@@ -7,9 +7,10 @@ import type { Route } from "next";
 export const SITE = {
   name: "Company",
   legalName: "Company, Inc.",
-  tagline: "Agentic AI for law, finance and healthcare — built for the enterprise, end to end.",
+  tagline:
+    "Agentic AI for law, finance, healthcare and retail — built for the enterprise, end to end.",
   description:
-    "We design, deploy and operate governed AI agents that complete real work in law, finance and healthcare — with human approval, full audit trails and enterprise-grade security.",
+    "We design, deploy and operate governed AI agents that complete real work in law, finance, healthcare and retail — with human approval, full audit trails and enterprise-grade security.",
   email: "hello@example.com",
   securityEmail: "security@example.com",
   address: "Your Street, Your City, Your Country",
@@ -32,6 +33,7 @@ export const FOOTER_NAV: { title: string; links: NavLink[] }[] = [
       { label: "Law", href: "/solutions/law" as Route },
       { label: "Finance", href: "/solutions/finance" as Route },
       { label: "Healthcare", href: "/solutions/healthcare" as Route },
+      { label: "Retail", href: "/solutions/retail" as Route },
     ],
   },
   {

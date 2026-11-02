@@ -23,7 +23,7 @@ import { SOLUTIONS } from "@/content/solutions";
 import { siteUrl } from "@/server/config/env";
 
 export const metadata: Metadata = {
-  title: { absolute: `${SITE.name} — Agentic AI for law, finance and healthcare` },
+  title: { absolute: `${SITE.name} — Agentic AI for law, finance, healthcare and retail` },
   description: SITE.description,
   alternates: { canonical: "/" },
 };
@@ -51,7 +51,7 @@ export default function HomePage() {
         <Container className="py-20 sm:py-28">
           <div className="mx-auto max-w-4xl text-center">
             <p className="border-border bg-card text-muted-foreground mx-auto inline-flex rounded-full border px-4 py-1.5 text-sm">
-              Enterprise agentic AI · Law · Finance · Healthcare
+              Enterprise agentic AI · Law · Finance · Healthcare · Retail
             </p>
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
               AI agents that finish the work — with your people in control

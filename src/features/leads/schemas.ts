@@ -4,6 +4,7 @@ export const INDUSTRIES = [
   { value: "law", label: "Law" },
   { value: "finance", label: "Finance" },
   { value: "healthcare", label: "Healthcare" },
+  { value: "retail", label: "Retail" },
   { value: "other", label: "Other" },
 ] as const;
 

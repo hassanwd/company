@@ -6,7 +6,7 @@ import { SOLUTIONS } from "@/content/solutions";
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Governed AI agents for law, finance and healthcare — contract review, transaction monitoring, prior authorisation and more.",
+    "Governed AI agents for law, finance, healthcare and retail — contract review, transaction monitoring, demand forecasting and more.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -15,7 +15,7 @@ export default function SolutionsPage() {
     <>
       <PageHero
         eyebrow="Solutions"
-        title="Agentic solutions for law, finance and healthcare"
+        title="Agentic solutions for law, finance, healthcare and retail"
         description="Industry-specific agents, controls and integrations — delivered end to end, from discovery to day-to-day operation."
       />
       <Section>

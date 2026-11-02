@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckList, CtaBanner, Faq } from "@/components/marketing/blocks";
+import { CheckList, CtaBanner, Faq, Steps } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { Button } from "@/components/ui/button";
-import { ENGAGEMENT_MODELS, GENERAL_FAQS } from "@/content/company";
+import { ENGAGEMENT_MODELS, GENERAL_FAQS, POC_TERMS, POC_WEEKS } from "@/content/company";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -52,7 +52,20 @@ export default function EngagementPage() {
         </div>
       </Section>
 
-      <Section tone="muted" eyebrow="FAQ" title="Commercial & delivery questions">
+      <Section
+        tone="muted"
+        eyebrow="Proof of concept"
+        title="See it work on your own data in four weeks"
+        description="A focused proof of concept for one workflow at an introductory price, below typical market rates, with a clear decision at the end."
+      >
+        <Steps steps={POC_WEEKS} layout="grid" />
+        <div className="border-border bg-card mt-6 rounded-xl border p-6">
+          <h3 className="font-semibold">How it works</h3>
+          <CheckList items={POC_TERMS} className="mt-4" />
+        </div>
+      </Section>
+
+      <Section eyebrow="FAQ" title="Commercial & delivery questions">
         <div className="max-w-3xl">
           <Faq items={GENERAL_FAQS} />
         </div>

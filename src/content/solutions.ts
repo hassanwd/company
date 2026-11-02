@@ -1,4 +1,4 @@
-import { HeartPulse, Landmark, Scale, type LucideIcon } from "lucide-react";
+import { HeartPulse, Landmark, Scale, ShoppingBag, type LucideIcon } from "lucide-react";
 import type { Route } from "next";
 
 export type Faq = { question: string; answer: string };
@@ -11,7 +11,7 @@ export type Agent = {
 };
 
 export type Solution = {
-  slug: "law" | "finance" | "healthcare";
+  slug: "law" | "finance" | "healthcare" | "retail";
   name: string;
   icon: LucideIcon;
   headline: string;
@@ -525,6 +525,176 @@ export const SOLUTIONS: Solution[] = [
         question: "Is the product a medical device?",
         answer:
           "Our agents are designed for administrative workflows and clinician-reviewed documentation, not diagnosis or treatment. Any use beyond that scope is assessed with your compliance team first.",
+      },
+    ],
+  },
+  {
+    slug: "retail",
+    name: "Retail",
+    icon: ShoppingBag,
+    headline: "Agents that keep shelves stocked, customers served and margins healthy",
+    tagline: "Merchandising, supply chain, service and loyalty — with your teams making the calls.",
+    summary:
+      "Retail runs on thin margins and fast-moving signals across stores, channels and suppliers. Our agents handle the routine analysis and follow-up — forecasting, replenishment, catalogue upkeep, customer queries — and escalate the judgment calls to your people.",
+    challenges: [
+      {
+        title: "Stock in the wrong place",
+        description:
+          "Stock-outs lose sales while overstock ties up cash, and planners can't react to every store and channel by hand.",
+      },
+      {
+        title: "Catalogue and pricing upkeep",
+        description:
+          "Thousands of products need accurate content and prices across channels, and errors reach customers immediately.",
+      },
+      {
+        title: "Service demand spikes",
+        description:
+          "Order, return and delivery queries surge around promotions and peak season, stretching support teams.",
+      },
+      {
+        title: "Customer trust and data",
+        description:
+          "Personal and payment data carry strict obligations, and an off-brand or wrong answer is public quickly.",
+      },
+    ],
+    agents: [
+      {
+        name: "Demand Forecasting Agent",
+        description:
+          "Combines sales history, promotions, seasonality and external signals to forecast demand by product, store and channel, and explains the drivers.",
+        checkpoint:
+          "Planners review forecasts and can override assumptions before they drive orders.",
+      },
+      {
+        name: "Inventory Replenishment Agent",
+        description:
+          "Monitors stock levels, proposes purchase orders and inter-store transfers and flags at-risk items before they sell out.",
+        checkpoint: "Buyers approve orders above agreed value or risk thresholds.",
+      },
+      {
+        name: "Product Catalogue Agent",
+        description:
+          "Enriches and standardises product data, drafts descriptions and attributes and checks listings for gaps and inconsistencies.",
+        checkpoint: "Merchandisers approve content before it is published to any channel.",
+      },
+      {
+        name: "Pricing & Promotions Agent",
+        description:
+          "Analyses elasticity, competitor moves and margin to recommend price and promotion changes with the expected impact.",
+        checkpoint: "Pricing owners approve every change within the guardrails you set.",
+      },
+      {
+        name: "Customer Service Agent",
+        description:
+          "Answers order, delivery, return and product questions across chat and email, using your policies and live order data.",
+        checkpoint:
+          "Complaints, refunds above limits and sensitive cases are handed to a person with full context.",
+      },
+      {
+        name: "Supplier & Logistics Agent",
+        description:
+          "Tracks inbound shipments and supplier performance, chases delays and drafts exception reports for the supply chain team.",
+        checkpoint: "Supply chain managers decide on re-routing, expediting and supplier actions.",
+      },
+    ],
+    workflow: {
+      title: "From low-stock signal to replenishment order",
+      scenario: "Illustrative workflow — configured to your ERP, suppliers and ordering policies.",
+      steps: [
+        {
+          title: "Monitor",
+          description:
+            "Stock levels and sell-through are tracked across stores, warehouses and online.",
+        },
+        {
+          title: "Forecast",
+          description:
+            "Expected demand is updated for upcoming promotions, events and seasonality.",
+        },
+        {
+          title: "Plan",
+          description:
+            "The agent proposes orders and transfers that respect lead times, minimums and budgets.",
+        },
+        {
+          title: "Flag",
+          description:
+            "Unusual spikes, supplier delays and low-confidence items are called out with the reason.",
+        },
+        {
+          title: "Buyer approval",
+          description:
+            "The buyer reviews the plan and its rationale, then approves, edits or rejects.",
+        },
+        {
+          title: "Order & track",
+          description:
+            "Approved orders go to suppliers through your systems and are tracked through to receipt.",
+        },
+      ],
+    },
+    integrations: [
+      "ERP & merchandising systems",
+      "E-commerce platforms",
+      "Point-of-sale systems",
+      "Warehouse & order management",
+      "Supplier portals & EDI",
+      "Customer service & CRM",
+      "Product information management",
+      "Data warehouses & analytics",
+    ],
+    governance: [
+      {
+        title: "Customer data protection",
+        description:
+          "Access follows least privilege, personal data is minimised and payment data stays out of agent context.",
+      },
+      {
+        title: "Approval thresholds",
+        description:
+          "Order values, price changes and refund limits are set by you and enforced by policy.",
+      },
+      {
+        title: "Brand and policy control",
+        description:
+          "Customer-facing answers follow your approved tone, policies and source content.",
+      },
+      {
+        title: "Transparent recommendations",
+        description: "Each forecast, price or order carries the data and reasoning behind it.",
+      },
+      {
+        title: "Complete audit trail",
+        description: "Actions, approvals and customer interactions are logged and reviewable.",
+      },
+    ],
+    outcomes: [
+      "Fewer stock-outs and less overstock tying up cash",
+      "Accurate, consistent product content across every channel",
+      "Faster customer responses, even through peak periods",
+      "Merchandisers and planners focused on strategy instead of spreadsheets",
+    ],
+    faqs: [
+      {
+        question: "Can agents place orders or change prices on their own?",
+        answer:
+          "Only within limits you define. By default, orders and price changes go to a person for approval, and thresholds can be tightened or relaxed over time as trust builds.",
+      },
+      {
+        question: "Does the customer service agent replace our support team?",
+        answer:
+          "No. It handles routine queries and prepares context for the rest. Complaints, refunds above limits and sensitive cases always go to your team.",
+      },
+      {
+        question: "How is customer and payment data handled?",
+        answer:
+          "Access is limited to what each task needs, data is encrypted in transit and at rest, and payment card data is kept out of agent context. Customer data is never used to train models.",
+      },
+      {
+        question: "Which retail systems do you integrate with?",
+        answer:
+          "We connect to ERP, e-commerce, point-of-sale, warehouse and customer-service platforms through their supported APIs, so you keep the systems you already run.",
       },
     ],
   },
