@@ -27,8 +27,6 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
   const solution = getSolution((await params).slug);
   if (!solution) notFound();
 
-  const { icon: Icon } = solution;
-
   return (
     <>
       <PageHero
@@ -70,14 +68,14 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
         description="Each agent has a defined job, scoped permissions and a clear point where a person stays in control."
       >
         <div className="grid gap-4 md:grid-cols-2">
-          {solution.agents.map((agent) => (
+          {solution.agents.map(({ icon: AgentIcon, ...agent }) => (
             <article
               key={agent.name}
               className="border-border bg-card flex flex-col rounded-xl border p-6 shadow-sm"
             >
               <div className="flex items-center gap-3">
                 <span className="bg-primary/10 text-primary flex size-9 items-center justify-center rounded-lg">
-                  <Icon className="size-4" aria-hidden />
+                  <AgentIcon className="size-4" aria-hidden />
                 </span>
                 <h3 className="font-semibold">{agent.name}</h3>
               </div>

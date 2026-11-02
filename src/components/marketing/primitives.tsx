@@ -20,7 +20,7 @@ type SectionProps = {
   title?: string;
   description?: string;
   align?: "left" | "center";
-  tone?: "default" | "muted";
+  tone?: "default" | "muted" | "dark";
   id?: string;
   className?: string;
   children?: ReactNode;
@@ -43,6 +43,7 @@ export function Section({
       className={cn(
         "py-16 sm:py-20",
         tone === "muted" && "bg-muted/50 border-border border-y",
+        tone === "dark" && "theme-inverse bg-surface-inverse text-foreground",
         className,
       )}
     >
@@ -56,7 +57,9 @@ export function Section({
               </h2>
             ) : null}
             {description ? (
-              <p className="text-muted-foreground mt-4 text-lg text-pretty">{description}</p>
+              <p className="text-muted-foreground mt-4 max-w-prose text-lg text-pretty">
+                {description}
+              </p>
             ) : null}
           </div>
         )}
@@ -87,7 +90,9 @@ export function PageHero({
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
             {title}
           </h1>
-          <p className="text-muted-foreground mt-5 text-lg text-pretty sm:text-xl">{description}</p>
+          <p className="text-muted-foreground mt-5 max-w-prose text-lg text-pretty sm:text-xl">
+            {description}
+          </p>
           {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
         </div>
       </Container>

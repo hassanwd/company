@@ -1,10 +1,41 @@
-import { HeartPulse, Landmark, Scale, ShoppingBag, type LucideIcon } from "lucide-react";
+import {
+  BadgeCheck,
+  BadgeDollarSign,
+  BellRing,
+  BookOpen,
+  Boxes,
+  Calculator,
+  CalendarCheck,
+  ChartColumn,
+  ChartLine,
+  ClipboardCheck,
+  FileBarChart,
+  FileSignature,
+  Files,
+  FolderSearch,
+  HeartPulse,
+  Landmark,
+  MessagesSquare,
+  Radar,
+  Receipt,
+  ReceiptText,
+  Scale,
+  ShieldAlert,
+  ShoppingBag,
+  Stethoscope,
+  Tags,
+  TrendingUp,
+  Truck,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
 import type { Route } from "next";
 
 export type Faq = { question: string; answer: string };
 
 export type Agent = {
   name: string;
+  icon: LucideIcon;
   description: string;
   /** Where a human stays in control. */
   checkpoint: string;
@@ -14,6 +45,8 @@ export type Solution = {
   slug: "law" | "finance" | "healthcare" | "retail";
   name: string;
   icon: LucideIcon;
+  /** Industry accent colour (hex), used for the card's top edge and icon. */
+  accent: string;
   headline: string;
   tagline: string;
   summary: string;
@@ -33,6 +66,7 @@ export const SOLUTIONS: Solution[] = [
     slug: "law",
     name: "Law",
     icon: Scale,
+    accent: "#4f46e5",
     headline: "Agents that handle the legal work behind the legal work",
     tagline: "Contract review, research, diligence and compliance — with attorneys in command.",
     summary:
@@ -62,12 +96,14 @@ export const SOLUTIONS: Solution[] = [
     agents: [
       {
         name: "Contract Review Agent",
+        icon: FileSignature,
         description:
           "Reads inbound agreements, extracts key terms, compares each clause to your playbook, flags deviations and proposes redlines with the reasoning shown.",
         checkpoint: "An attorney approves every redline before anything leaves the building.",
       },
       {
         name: "Legal Research Agent",
+        icon: BookOpen,
         description:
           "Searches your approved sources, summarises findings with pinpoint citations, and highlights conflicting or superseded authority.",
         checkpoint:
@@ -75,6 +111,7 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         name: "Due Diligence Agent",
+        icon: FolderSearch,
         description:
           "Works through data-room documents, builds issue lists, populates disclosure schedules and tracks open requests.",
         checkpoint:
@@ -82,18 +119,21 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         name: "Matter Intake & Conflicts Agent",
+        icon: ShieldAlert,
         description:
           "Structures new requests, runs conflict checks against your records and routes matters to the right team with the context attached.",
         checkpoint: "Potential conflicts always escalate to the responsible partner or counsel.",
       },
       {
         name: "Regulatory Monitoring Agent",
+        icon: Radar,
         description:
           "Tracks regulatory change relevant to your obligations, maps it to affected policies and contracts, and drafts impact memos.",
         checkpoint: "Compliance counsel signs off on every memo and policy change.",
       },
       {
         name: "Document Review Agent",
+        icon: Files,
         description:
           "Performs first-pass relevance and privilege tagging for large review sets, with statistical sampling to measure quality.",
         checkpoint: "Reviewers own the final calls; sampling results are reported, not hidden.",
@@ -202,6 +242,7 @@ export const SOLUTIONS: Solution[] = [
     slug: "finance",
     name: "Finance",
     icon: Landmark,
+    accent: "#059669",
     headline: "Agents that close the books, clear the queue and keep you audit-ready",
     tagline: "Onboarding, monitoring, payables and reporting — with controls built in.",
     summary:
@@ -231,12 +272,14 @@ export const SOLUTIONS: Solution[] = [
     agents: [
       {
         name: "KYC & Onboarding Agent",
+        icon: BadgeCheck,
         description:
           "Collects and validates customer documents, screens against watchlists through your providers, and assembles a complete case file.",
         checkpoint: "Compliance officers approve every high-risk or ambiguous case.",
       },
       {
         name: "Transaction Alert Triage Agent",
+        icon: BellRing,
         description:
           "Enriches alerts with context, scores likely false positives, and drafts an investigation narrative for the analyst.",
         checkpoint:
@@ -244,18 +287,21 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         name: "Accounts Payable Agent",
+        icon: ReceiptText,
         description:
           "Captures invoices, performs two- and three-way matching, codes spend, and routes exceptions for approval.",
         checkpoint: "Payments above set limits, and all mismatches, require human approval.",
       },
       {
         name: "Close & Reconciliation Agent",
+        icon: Calculator,
         description:
           "Matches transactions across ledgers and bank feeds, proposes adjusting entries and chases missing support.",
         checkpoint: "Controllers review and post entries within existing approval workflows.",
       },
       {
         name: "Credit Analysis Support Agent",
+        icon: ChartLine,
         description:
           "Spreads financials, summarises risk factors against policy and prepares a memo with the evidence cited.",
         checkpoint:
@@ -263,6 +309,7 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         name: "Audit & Regulatory Reporting Agent",
+        icon: FileBarChart,
         description:
           "Gathers control evidence continuously, drafts regulatory submissions and answers auditor requests with traceable sources.",
         checkpoint: "Finance leaders review and attest before anything is filed or shared.",
@@ -367,6 +414,7 @@ export const SOLUTIONS: Solution[] = [
     slug: "healthcare",
     name: "Healthcare",
     icon: HeartPulse,
+    accent: "#e11d48",
     headline: "Agents that take the administrative load off clinicians and care teams",
     tagline: "Authorisations, revenue cycle, documentation and coordination — with privacy first.",
     summary:
@@ -395,36 +443,42 @@ export const SOLUTIONS: Solution[] = [
     agents: [
       {
         name: "Prior Authorisation Agent",
+        icon: ClipboardCheck,
         description:
           "Determines requirements, compiles supporting clinical documentation, submits requests and tracks status through to a decision.",
         checkpoint: "Clinical staff review medical-necessity content before submission.",
       },
       {
         name: "Claims & Denials Agent",
+        icon: Receipt,
         description:
           "Checks claims for coding and documentation gaps before submission, categorises denials and drafts appeals with the evidence attached.",
         checkpoint: "Coders and billing leads approve code changes and appeals.",
       },
       {
         name: "Clinical Documentation Support Agent",
+        icon: Stethoscope,
         description:
           "Drafts structured notes and summaries from encounter inputs and prepares them for the clinician to edit.",
         checkpoint: "The clinician reviews, edits and signs. Nothing enters the record unsigned.",
       },
       {
         name: "Patient Access Agent",
+        icon: CalendarCheck,
         description:
           "Handles scheduling, reminders, eligibility checks and pre-visit paperwork across the channels patients use.",
         checkpoint: "Clinical questions and urgent symptoms are escalated to staff immediately.",
       },
       {
         name: "Care Coordination Agent",
+        icon: Workflow,
         description:
           "Manages referrals and transitions of care, closes loops on outstanding results and keeps care teams aligned.",
         checkpoint: "Care managers own patient-facing decisions and exceptions.",
       },
       {
         name: "Quality & Compliance Reporting Agent",
+        icon: ChartColumn,
         description:
           "Assembles measure data, identifies documentation gaps and prepares reports for quality and regulatory programmes.",
         checkpoint: "Quality leaders validate figures before submission.",
@@ -532,6 +586,7 @@ export const SOLUTIONS: Solution[] = [
     slug: "retail",
     name: "Retail",
     icon: ShoppingBag,
+    accent: "#d97706",
     headline: "Agents that keep shelves stocked, customers served and margins healthy",
     tagline: "Merchandising, supply chain, service and loyalty — with your teams making the calls.",
     summary:
@@ -561,6 +616,7 @@ export const SOLUTIONS: Solution[] = [
     agents: [
       {
         name: "Demand Forecasting Agent",
+        icon: TrendingUp,
         description:
           "Combines sales history, promotions, seasonality and external signals to forecast demand by product, store and channel, and explains the drivers.",
         checkpoint:
@@ -568,24 +624,28 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         name: "Inventory Replenishment Agent",
+        icon: Boxes,
         description:
           "Monitors stock levels, proposes purchase orders and inter-store transfers and flags at-risk items before they sell out.",
         checkpoint: "Buyers approve orders above agreed value or risk thresholds.",
       },
       {
         name: "Product Catalogue Agent",
+        icon: Tags,
         description:
           "Enriches and standardises product data, drafts descriptions and attributes and checks listings for gaps and inconsistencies.",
         checkpoint: "Merchandisers approve content before it is published to any channel.",
       },
       {
         name: "Pricing & Promotions Agent",
+        icon: BadgeDollarSign,
         description:
           "Analyses elasticity, competitor moves and margin to recommend price and promotion changes with the expected impact.",
         checkpoint: "Pricing owners approve every change within the guardrails you set.",
       },
       {
         name: "Customer Service Agent",
+        icon: MessagesSquare,
         description:
           "Answers order, delivery, return and product questions across chat and email, using your policies and live order data.",
         checkpoint:
@@ -593,6 +653,7 @@ export const SOLUTIONS: Solution[] = [
       },
       {
         name: "Supplier & Logistics Agent",
+        icon: Truck,
         description:
           "Tracks inbound shipments and supplier performance, chases delays and drafts exception reports for the supply chain team.",
         checkpoint: "Supply chain managers decide on re-routing, expediting and supplier actions.",

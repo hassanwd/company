@@ -1,17 +1,19 @@
 import { ArrowRight, Check, FileText, ShieldCheck } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Feature, Step } from "@/content/company";
 import type { Faq as FaqItem, Solution } from "@/content/solutions";
 import { solutionHref } from "@/content/solutions";
+import { featureGridClass, STEP_CONNECTOR, stepsLayout } from "./layout-helpers";
 import { Container } from "./primitives";
 
-export function FeatureGrid({ features, columns = 3 }: { features: Feature[]; columns?: 2 | 3 }) {
+/** Icon cards. Columns follow the item count so no card is left on its own row. */
+export function FeatureGrid({ features }: { features: Feature[] }) {
   return (
-    <ul className={cn("grid gap-4 sm:grid-cols-2", columns === 3 && "lg:grid-cols-3")}>
+    <ul className={cn("grid gap-4", featureGridClass(features.length))}>
       {features.map(({ title, description, icon: Icon }) => (
         <li key={title} className="border-border bg-card rounded-xl border p-6 shadow-sm">
           <span className="bg-primary/10 text-primary flex size-10 items-center justify-center rounded-lg">
@@ -27,14 +29,17 @@ export function FeatureGrid({ features, columns = 3 }: { features: Feature[]; co
 
 /** Numbered steps. `layout="grid"` for a row of cards, `"list"` for a vertical timeline. */
 export function Steps({ steps, layout = "grid" }: { steps: Step[]; layout?: "grid" | "list" }) {
+  const { grid, connectAt } = stepsLayout(steps.length);
   return (
-    <ol
-      className={cn(
-        layout === "grid" ? "grid gap-4 sm:grid-cols-2 lg:grid-cols-3" : "flex flex-col gap-4",
-      )}
-    >
+    <ol className={cn(layout === "grid" ? ["grid gap-4", grid] : "flex flex-col gap-4")}>
       {steps.map((step, index) => (
-        <li key={step.title} className="border-border bg-card flex gap-4 rounded-xl border p-5">
+        <li
+          key={step.title}
+          className={cn(
+            "border-border bg-card relative flex gap-4 rounded-xl border p-5",
+            layout === "grid" && connectAt && STEP_CONNECTOR[connectAt],
+          )}
+        >
           <span className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold">
             {index + 1}
           </span>
@@ -84,13 +89,14 @@ export function CheckList({ items, className }: { items: string[]; className?: s
 }
 
 export function SolutionCard({ solution }: { solution: Solution }) {
-  const { icon: Icon, name, tagline, agents, slug } = solution;
+  const { icon: Icon, name, tagline, agents, slug, accent } = solution;
   return (
     <Link
       href={solutionHref(slug)}
-      className="group border-border bg-card hover:border-primary/50 focus-visible:ring-ring flex flex-col rounded-xl border p-6 shadow-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
+      style={{ "--accent": accent } as CSSProperties}
+      className="group border-border bg-card focus-visible:ring-ring flex flex-col rounded-xl border border-t-4 border-t-(--accent) p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none motion-reduce:hover:translate-y-0"
     >
-      <span className="bg-primary/10 text-primary flex size-11 items-center justify-center rounded-lg">
+      <span className="flex size-11 items-center justify-center rounded-lg bg-(--accent)/10 text-(--accent)">
         <Icon className="size-5" aria-hidden />
       </span>
       <h3 className="mt-5 text-xl font-semibold">{name}</h3>
@@ -103,7 +109,7 @@ export function SolutionCard({ solution }: { solution: Solution }) {
           </li>
         ))}
       </ul>
-      <span className="text-primary mt-6 inline-flex items-center gap-1 text-sm font-medium">
+      <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-(--accent)">
         Explore {name.toLowerCase()} solutions
         <ArrowRight
           className="size-4 transition-transform group-hover:translate-x-0.5"
@@ -207,8 +213,12 @@ export function AgentRunPreview() {
         </span>
       </div>
       <ul className="mt-5 flex flex-col gap-3">
-        {steps.map(([title, detail]) => (
-          <li key={title} className="flex gap-3">
+        {steps.map(([title, detail], index) => (
+          <li
+            key={title}
+            className="agent-step flex gap-3"
+            style={{ "--step-delay": `${index * 600}ms` } as CSSProperties}
+          >
             <span className="bg-success/10 text-success mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
               <Check className="size-3" aria-hidden />
             </span>
@@ -219,7 +229,7 @@ export function AgentRunPreview() {
           </li>
         ))}
       </ul>
-      <div className="border-border bg-muted mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3">
+      <div className="agent-approval border-border bg-muted mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3">
         <span className="flex items-center gap-2 text-sm font-medium">
           <ShieldCheck className="text-primary size-4" aria-hidden />
           Waiting for attorney approval

@@ -48,7 +48,7 @@ export default function HowWeWorkPage() {
         title="Who you'll work with"
         description="A small, senior, cross-functional team that stays with you from discovery onward."
       >
-        <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <dl className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {TEAM_ROLES.map(({ title, description }) => (
             <div key={title} className="border-border bg-card rounded-xl border p-5">
               <dt className="font-semibold">{title}</dt>

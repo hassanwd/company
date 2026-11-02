@@ -29,7 +29,7 @@ export default function SolutionsPage() {
         description="Industry-specific agents, controls and integrations — delivered end to end, from discovery to day-to-day operation."
       />
       <Section>
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {SOLUTIONS.map((solution) => (
             <SolutionCard key={solution.slug} solution={solution} />
           ))}

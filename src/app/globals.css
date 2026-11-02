@@ -12,6 +12,9 @@
   --destructive: #dc2626;
   --success: #16a34a;
   --ring: #6366f1;
+  /* Dark "inverse" surface used for one emphasis section per page. */
+  --surface-inverse: #14151c;
+  --surface-inverse-foreground: #f4f4f5;
   color-scheme: light;
 }
 
@@ -27,8 +30,25 @@
   --color-destructive: var(--destructive);
   --color-success: var(--success);
   --color-ring: var(--ring);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-surface-inverse-foreground: var(--surface-inverse-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* Re-points the tokens inside an inverse (dark) surface so every component adapts to it. */
+.theme-inverse {
+  --background: var(--surface-inverse);
+  --foreground: var(--surface-inverse-foreground);
+  --card: #1d1f29;
+  --muted: #272a36;
+  --muted-foreground: #a9adbd;
+  --border: #343847;
+  --primary: #818cf8;
+  --primary-foreground: #14151c;
+  --success: #4ade80;
+  --ring: #a5b4fc;
+  color-scheme: dark;
 }
 
 body {
@@ -37,17 +57,85 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Marketing backgrounds */
+/* Every interactive element gets a visible keyboard focus ring. */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Marketing backgrounds: a faint grid and glow in the primary colour, fading out downwards. */
 .bg-hero {
-  background: transparent;
+  background:
+    radial-gradient(
+      50rem 22rem at 50% -6rem,
+      color-mix(in oklab, var(--primary) 10%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--primary) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--primary) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    auto,
+    44px 44px,
+    44px 44px;
+  mask-image: linear-gradient(to bottom, black 55%, transparent);
+}
+
+/* Agent run preview: steps tick in one by one, then the approval row pulses. */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes approval-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--primary) 0%, transparent);
+  }
+}
+
+.agent-step {
+  opacity: 0;
+  animation: step-in 400ms ease-out forwards;
+  animation-delay: var(--step-delay, 0ms);
+}
+
+.agent-approval {
+  opacity: 0;
+  animation:
+    step-in 400ms ease-out 1800ms forwards,
+    approval-pulse 2s ease-in-out 2400ms infinite;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Reduced motion: no animation, show the final state straight away. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .agent-step,
+  .agent-approval {
+    opacity: 1;
+    animation: none;
   }
 }

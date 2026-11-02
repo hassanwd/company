@@ -147,58 +147,60 @@ export default function HomePage() {
       </Section>
 
       {/* Proof of concept banner */}
-      <Container className="py-4">
-        <div className="bg-primary text-primary-foreground grid gap-10 rounded-2xl p-8 sm:p-12 lg:grid-cols-[2fr_3fr]">
-          <div>
-            <p className="text-sm font-semibold tracking-wide text-white/80 uppercase">
-              Proof of concept
-            </p>
-            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-              See it work on your own data in 4 weeks
-            </h2>
-            <p className="mt-4 text-white/85">
-              One workflow, a clear go / no-go decision, and an introductory price below typical
-              market rates.
-            </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {["4 weeks", "1 workflow", "Go / no-go decision"].map((chip) => (
-                <li key={chip} className="rounded-full bg-white/15 px-3 py-1 text-sm font-medium">
-                  {chip}
-                </li>
-              ))}
-            </ul>
-            <Button
-              asChild
-              size="lg"
-              variant="secondary"
-              className="mt-8 bg-white text-neutral-900 hover:bg-white/90"
-            >
-              <Link href="/proof-of-concept">
-                See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
-              </Link>
-            </Button>
+      <section className="py-16 sm:py-20">
+        <Container>
+          <div className="bg-primary text-primary-foreground grid gap-10 rounded-2xl p-8 sm:p-12 lg:grid-cols-[2fr_3fr]">
+            <div>
+              <p className="text-sm font-semibold tracking-wide text-white/80 uppercase">
+                Proof of concept
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+                See it work on your own data in 4 weeks
+              </h2>
+              <p className="mt-4 text-white/85">
+                One workflow, a clear go / no-go decision, and an introductory price below typical
+                market rates.
+              </p>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {["4 weeks", "1 workflow", "Go / no-go decision"].map((chip) => (
+                  <li key={chip} className="rounded-full bg-white/15 px-3 py-1 text-sm font-medium">
+                    {chip}
+                  </li>
+                ))}
+              </ul>
+              <Button
+                asChild
+                size="lg"
+                variant="secondary"
+                className="mt-8 bg-white text-neutral-900 hover:bg-white/90"
+              >
+                <Link href="/proof-of-concept">
+                  See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </Button>
+            </div>
+            <ol className="relative flex flex-col gap-6">
+              <span className="absolute top-5 bottom-5 left-5 w-px bg-white/30" aria-hidden />
+              {POC_WEEKS.map(({ title, description }, index) => {
+                const Icon = POC_ICONS[index];
+                return (
+                  <li key={title} className="relative flex gap-4">
+                    <span className="text-primary relative flex size-10 shrink-0 items-center justify-center rounded-full bg-white">
+                      <Icon className="size-5" aria-hidden />
+                    </span>
+                    <div>
+                      <h3 className="font-semibold">{title}</h3>
+                      <p className="mt-1 text-sm text-white/80">{description}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
           </div>
-          <ol className="relative flex flex-col gap-6">
-            <span className="absolute top-5 bottom-5 left-5 w-px bg-white/30" aria-hidden />
-            {POC_WEEKS.map(({ title, description }, index) => {
-              const Icon = POC_ICONS[index];
-              return (
-                <li key={title} className="relative flex gap-4">
-                  <span className="text-primary relative flex size-10 shrink-0 items-center justify-center rounded-full bg-white">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="font-semibold">{title}</h3>
-                    <p className="mt-1 text-sm text-white/80">{description}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-        </div>
-      </Container>
+        </Container>
+      </section>
 
-      <Section>
+      <Section tone="dark">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div>
             <Eyebrow>Security & trust</Eyebrow>
