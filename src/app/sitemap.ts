@@ -9,7 +9,7 @@ const STATIC_PATHS = [
   "/cloud-infra",
   "/security",
   "/how-we-work",
-  "/engagement",
+  "/proof-of-concept",
   "/about",
   "/contact",
   "/privacy",

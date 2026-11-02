@@ -118,12 +118,13 @@ export function CtaBanner({
   title = "See what governed agents can do for your team",
   description = "Book a working session with our solution architects. We'll map your highest-value workflows and show what a pilot would look like.",
   primary = { label: "Book a demo", href: "/contact" as Route },
-  secondary,
+  secondary = { label: "See the 4-week proof of concept", href: "/proof-of-concept" as Route },
 }: {
   title?: string;
   description?: string;
   primary?: { label: string; href: Route };
-  secondary?: { label: string; href: Route };
+  /** Pass `null` to hide the secondary button (e.g. on the proof-of-concept page itself). */
+  secondary?: { label: string; href: Route } | null;
 }) {
   return (
     <section className="py-16 sm:py-20">

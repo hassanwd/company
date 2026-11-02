@@ -58,6 +58,10 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    // The proof-of-concept page used to live at /engagement.
+    return [{ source: "/engagement", destination: "/proof-of-concept", permanent: true }];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

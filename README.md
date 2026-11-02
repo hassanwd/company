@@ -29,7 +29,7 @@ npm run dev        # http://localhost:3000
 
 ## Site map
 
-`/` · `/solutions` · `/solutions/law` · `/solutions/finance` · `/solutions/healthcare` · `/solutions/retail` · `/platform` · `/cloud-infra` · `/security` · `/how-we-work` · `/engagement` · `/about` · `/contact` (demo request) · `/privacy` · `/terms` · `/sitemap.xml` · `/robots.txt`
+`/` · `/solutions` · `/solutions/law` · `/solutions/finance` · `/solutions/healthcare` · `/solutions/retail` · `/platform` · `/cloud-infra` · `/security` · `/how-we-work` · `/proof-of-concept` (`/engagement` redirects here) · `/about` · `/contact` (demo request) · `/privacy` · `/terms` · `/sitemap.xml` · `/robots.txt`
 
 ## Editing content
 

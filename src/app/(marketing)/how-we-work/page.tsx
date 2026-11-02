@@ -58,10 +58,7 @@ export default function HowWeWorkPage() {
         </dl>
       </Section>
 
-      <CtaBanner
-        title="Start with a discovery conversation"
-        secondary={{ label: "Proof of concept", href: "/engagement" }}
-      />
+      <CtaBanner title="Start with a discovery conversation" />
     </>
   );
 }

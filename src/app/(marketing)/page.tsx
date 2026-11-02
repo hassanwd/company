@@ -6,22 +6,16 @@ import {
   CheckList,
   CtaBanner,
   Faq,
-  FeatureGrid,
   SolutionCard,
   Steps,
 } from "@/components/marketing/blocks";
 import { Container, Eyebrow, Section } from "@/components/marketing/primitives";
+import { LogoStrip, ProofSection } from "@/components/marketing/proof";
 import { Button } from "@/components/ui/button";
-import {
-  AGENT_LOOP,
-  COMMITMENTS,
-  GENERAL_FAQS,
-  PLATFORM_FEATURES,
-  POC_WEEKS,
-  PROCESS,
-} from "@/content/company";
+import { AGENT_LOOP, BEFORE_AFTER, COMMITMENTS, GENERAL_FAQS, POC_WEEKS } from "@/content/company";
+import { CASE_STUDIES, CUSTOMER_LOGOS, TESTIMONIALS } from "@/content/proof";
 import { SITE } from "@/content/site";
-import { SOLUTIONS } from "@/content/solutions";
+import { SOLUTIONS, solutionHref } from "@/content/solutions";
 import { siteUrl } from "@/server/config/env";
 
 export const metadata: Metadata = {
@@ -58,7 +52,7 @@ export default function HomePage() {
             <p className="border-border bg-card text-muted-foreground mx-auto inline-flex rounded-full border px-4 py-1.5 text-sm">
               Enterprise agentic AI · Law · Finance · Healthcare · Retail
             </p>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
+            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
               AI agents that finish the work — with your people in control
             </h1>
             <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg text-pretty sm:text-xl">
@@ -68,11 +62,11 @@ export default function HomePage() {
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <Button asChild size="lg">
-                <Link href="/engagement">Start a 4-week proof of concept</Link>
+                <Link href="/contact">Book a demo</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="/solutions">
-                  Explore solutions <ArrowRight className="size-4" aria-hidden />
+                <Link href="/proof-of-concept">
+                  See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
                 </Link>
               </Button>
             </div>
@@ -83,8 +77,77 @@ export default function HomePage() {
         </Container>
       </div>
 
+      {/* Customer logos: hidden until real logos are added in src/content/proof.ts */}
+      <LogoStrip logos={CUSTOMER_LOGOS} />
+
+      {/* What agents do */}
+      <Section
+        eyebrow="What agents do"
+        title="The same work, with a person in control"
+        description="Three examples of how an agent takes the repeatable first pass while your team keeps the decision."
+      >
+        <ul className="grid gap-4 lg:grid-cols-3">
+          {BEFORE_AFTER.map(({ industry, slug, agent, before, after }) => (
+            <li
+              key={slug}
+              className="border-border bg-card flex flex-col rounded-xl border p-6 shadow-sm"
+            >
+              <p className="text-primary text-sm font-semibold">{industry}</p>
+              <p className="text-muted-foreground mt-3 text-xs font-semibold tracking-wide uppercase">
+                Before
+              </p>
+              <p className="mt-1 text-sm">{before}</p>
+              <p className="text-muted-foreground mt-4 text-xs font-semibold tracking-wide uppercase">
+                With the {agent}
+              </p>
+              <p className="mt-1 text-sm">{after}</p>
+              <Link
+                href={solutionHref(slug)}
+                className="text-primary focus-visible:ring-ring mt-auto inline-flex items-center gap-1 rounded pt-5 text-sm font-medium hover:underline focus-visible:ring-2 focus-visible:outline-none"
+              >
+                See {industry.toLowerCase()} solutions
+                <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section
+        tone="muted"
+        eyebrow="Solutions"
+        title="Built for industries where accuracy and trust matter"
+        description="Each solution pairs domain-specific agents with the controls that industry requires."
+      >
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {SOLUTIONS.map((solution) => (
+            <SolutionCard key={solution.slug} solution={solution} />
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="What makes it agentic"
+        title="Not a chatbot. A colleague that completes tasks."
+        description="Agents pursue a goal through a loop of planning, acting, checking and escalating — and every step is recorded."
+      >
+        <Steps steps={AGENT_LOOP} />
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button asChild variant="outline">
+            <Link href="/platform">
+              See the platform <ArrowRight className="size-4" aria-hidden />
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/how-we-work">
+              How we work <ArrowRight className="size-4" aria-hidden />
+            </Link>
+          </Button>
+        </div>
+      </Section>
+
       {/* Proof of concept banner */}
-      <Container className="pt-10">
+      <Container className="py-4">
         <div className="bg-primary text-primary-foreground grid gap-10 rounded-2xl p-8 sm:p-12 lg:grid-cols-[2fr_3fr]">
           <div>
             <p className="text-sm font-semibold tracking-wide text-white/80 uppercase">
@@ -110,8 +173,8 @@ export default function HomePage() {
               variant="secondary"
               className="mt-8 bg-white text-neutral-900 hover:bg-white/90"
             >
-              <Link href="/engagement">
-                See the proof of concept <ArrowRight className="size-4" aria-hidden />
+              <Link href="/proof-of-concept">
+                See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
               </Link>
             </Button>
           </div>
@@ -134,62 +197,6 @@ export default function HomePage() {
           </ol>
         </div>
       </Container>
-
-      {/* Value strip */}
-      <Container className="py-10">
-        <dl className="grid gap-6 text-center sm:grid-cols-3">
-          {[
-            ["End to end", "Discovery to production to ongoing operations, from one team."],
-            ["Human-governed", "Approval gates and escalation designed around your risk."],
-            [
-              "Enterprise-secure",
-              "Your data, your environment, your keys. Never used to train models.",
-            ],
-          ].map(([term, detail]) => (
-            <div key={term}>
-              <dt className="font-semibold">{term}</dt>
-              <dd className="text-muted-foreground mt-1 text-sm">{detail}</dd>
-            </div>
-          ))}
-        </dl>
-      </Container>
-
-      <Section
-        tone="muted"
-        eyebrow="Solutions"
-        title="Built for industries where accuracy and trust matter"
-        description="Each solution pairs domain-specific agents with the controls that industry requires."
-      >
-        <div className="grid gap-4 lg:grid-cols-3">
-          {SOLUTIONS.map((solution) => (
-            <SolutionCard key={solution.slug} solution={solution} />
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="What makes it agentic"
-        title="Not a chatbot. A colleague that completes tasks."
-        description="Agents pursue a goal through a loop of planning, acting, checking and escalating — and every step is recorded."
-      >
-        <Steps steps={AGENT_LOOP} />
-      </Section>
-
-      <Section
-        tone="muted"
-        eyebrow="Platform"
-        title="Everything an enterprise needs to run agents safely"
-        description="One governed platform for orchestration, knowledge, integrations, approvals and audit."
-      >
-        <FeatureGrid features={PLATFORM_FEATURES.slice(0, 6)} />
-        <div className="mt-8">
-          <Button asChild variant="outline">
-            <Link href="/platform">
-              See the full platform <ArrowRight className="size-4" aria-hidden />
-            </Link>
-          </Button>
-        </div>
-      </Section>
 
       <Section>
         <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -215,34 +222,21 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section
-        tone="muted"
-        eyebrow="How we work"
-        title="One partner from idea to operation"
-        description="A structured path that proves value early and scales with confidence."
-      >
-        <ol className="grid gap-4 md:grid-cols-5">
-          {PROCESS.map(({ phase, title, description }) => (
-            <li key={phase} className="border-border bg-card rounded-xl border p-5">
-              <span className="text-primary text-sm font-semibold">{phase}</span>
-              <h3 className="mt-2 font-semibold">{title}</h3>
-              <p className="text-muted-foreground mt-2 text-sm">{description}</p>
-            </li>
-          ))}
-        </ol>
-      </Section>
+      {/* Case studies and testimonials: hidden until real ones are added in src/content/proof.ts */}
+      <ProofSection caseStudies={CASE_STUDIES} testimonials={TESTIMONIALS} />
 
       <Section
+        tone="muted"
         eyebrow="FAQ"
         title="Questions teams ask us first"
         description="Can't find yours? We're happy to talk it through."
       >
         <div className="max-w-3xl">
-          <Faq items={GENERAL_FAQS} />
+          <Faq items={GENERAL_FAQS.slice(0, 5)} />
         </div>
       </Section>
 
-      <CtaBanner secondary={{ label: "How we work", href: "/how-we-work" }} />
+      <CtaBanner />
     </>
   );
 }

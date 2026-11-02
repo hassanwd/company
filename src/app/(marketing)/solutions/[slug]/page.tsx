@@ -38,7 +38,9 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
         actions={
           <>
             <Button asChild size="lg">
-              <Link href="/contact">Book a {solution.name.toLowerCase()} demo</Link>
+              <Link href={{ pathname: "/contact", query: { industry: solution.slug } }}>
+                Book a demo
+              </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="/security">Security & compliance</Link>
@@ -150,7 +152,6 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
 
       <CtaBanner
         title={`Ready to see ${solution.name.toLowerCase()} agents on your own workflows?`}
-        secondary={{ label: "View all solutions", href: "/solutions" }}
       />
     </>
   );

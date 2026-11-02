@@ -17,8 +17,13 @@ const NEXT_STEPS = [
   "You get a concrete view of the agents, controls and a pilot plan.",
 ];
 
+const TOPIC_MESSAGES: Record<string, string> = {
+  security: "Please send us your security package.",
+};
+
 export default async function ContactPage({ searchParams }: PageProps<"/contact">) {
-  const { industry } = await searchParams;
+  const { industry, topic } = await searchParams;
+  const defaultMessage = typeof topic === "string" ? TOPIC_MESSAGES[topic] : undefined;
 
   return (
     <>
@@ -30,7 +35,10 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
           <div className="border-border bg-card rounded-xl border p-6 shadow-sm sm:p-8">
-            <LeadForm defaultIndustry={typeof industry === "string" ? industry : undefined} />
+            <LeadForm
+              defaultIndustry={typeof industry === "string" ? industry : undefined}
+              defaultMessage={defaultMessage}
+            />
           </div>
 
           <aside className="flex flex-col gap-8">
@@ -47,6 +55,21 @@ export default async function ContactPage({ searchParams }: PageProps<"/contact"
                 ))}
               </ol>
             </div>
+            {SITE.bookingUrl ? (
+              <div className="text-sm">
+                <h2 className="text-lg font-semibold">Prefer to pick a time?</h2>
+                <p className="mt-2">
+                  <a
+                    href={SITE.bookingUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary font-medium hover:underline"
+                  >
+                    Book directly
+                  </a>
+                </p>
+              </div>
+            ) : null}
             <div className="text-sm">
               <h2 className="text-lg font-semibold">Prefer email?</h2>
               <p className="text-muted-foreground mt-2 flex items-center gap-2">

@@ -15,7 +15,13 @@ import { COMPANY_SIZES, INDUSTRIES, leadInputSchema, type LeadInput } from "../s
 const INDUSTRY_OPTIONS = [{ value: "", label: "Select…" }, ...INDUSTRIES];
 const SIZE_OPTIONS = [{ value: "", label: "Select…" }, ...COMPANY_SIZES];
 
-export function LeadForm({ defaultIndustry }: { defaultIndustry?: string }) {
+export function LeadForm({
+  defaultIndustry,
+  defaultMessage = "",
+}: {
+  defaultIndustry?: string;
+  defaultMessage?: string;
+}) {
   const { control, handleSubmit, register, setError } = useForm<LeadInput>({
     resolver: zodResolver(leadInputSchema),
     defaultValues: {
@@ -27,7 +33,7 @@ export function LeadForm({ defaultIndustry }: { defaultIndustry?: string }) {
         ? defaultIndustry
         : "") as LeadInput["industry"],
       companySize: "" as LeadInput["companySize"],
-      message: "",
+      message: defaultMessage,
       website: "",
     },
   });
@@ -84,13 +90,13 @@ export function LeadForm({ defaultIndustry }: { defaultIndustry?: string }) {
         <SelectField
           control={control}
           name="industry"
-          label="Industry"
+          label="Industry (optional)"
           options={INDUSTRY_OPTIONS}
         />
         <SelectField
           control={control}
           name="companySize"
-          label="Company size"
+          label="Company size (optional)"
           options={SIZE_OPTIONS}
         />
       </div>
@@ -98,8 +104,8 @@ export function LeadForm({ defaultIndustry }: { defaultIndustry?: string }) {
         control={control}
         name="message"
         label="What would you like to automate?"
-        placeholder="Tell us about the workflow, team and systems involved."
-        rows={5}
+        placeholder="e.g. Reviewing inbound NDAs, matching invoices, or preparing prior authorisations. A sentence is plenty."
+        rows={4}
       />
 
       {/* Honeypot: hidden from people and assistive tech; bots fill it. */}
@@ -111,7 +117,7 @@ export function LeadForm({ defaultIndustry }: { defaultIndustry?: string }) {
       </div>
 
       <Button type="submit" size="lg" loading={submit.isPending}>
-        Request a demo
+        Book a demo
       </Button>
       <p className="text-muted-foreground text-xs">
         By submitting you agree to our{" "}

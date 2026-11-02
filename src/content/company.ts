@@ -403,10 +403,9 @@ export const POC_WEEKS: Step[] = [
 
 export const POC_TERMS: string[] = [
   "One workflow and one success metric, agreed before we start",
-  "Four weeks from the day data and system access are ready",
+  "4 weeks from the day data and system access are ready",
   "Starts on sample or sandbox data where approvals for live data are pending",
   "A person approves every consequential action",
-  "Introductory fixed fee, priced below typical market rates and agreed up front",
   "A clear go / no-go decision at the end, with no obligation to continue",
 ];
 
@@ -427,19 +426,104 @@ export const GENERAL_FAQS: Faq[] = [
       "You choose the region and deployment model — managed cloud, your own cloud, or a restricted environment. Your data is never used to train models.",
   },
   {
-    question: "How long until we see value?",
-    answer:
-      "We start with one well-chosen workflow and a measured pilot, so you see real results on your own data before committing to a broader rollout. A proof of concept runs 4 weeks from the day data and system access are ready; how long access takes depends on your security and review requirements, which we scope together up front.",
-  },
-  {
     question: "Can you work with our existing systems and AI models?",
     answer:
       "Yes. Agents connect to your systems of record through their supported interfaces, and we can use the models that satisfy your security and residency requirements, including private endpoints.",
   },
+];
+
+/** Questions specific to the proof of concept; kept off the home page so FAQs are not repeated. */
+export const POC_FAQS: Faq[] = [
+  {
+    question: "How long until we see value?",
+    answer:
+      "A proof of concept runs 4 weeks from the day data and system access are ready. How long access takes depends on your security and review requirements, which we scope together up front.",
+  },
   {
     question: "How is pricing structured?",
     answer:
-      "Engagements are scoped to the workflows, volumes and deployment model involved, so there is no one-size-fits-all rate card. Contact us and we will propose a scope and commercial model.",
+      "The proof of concept is a fixed fee agreed up front. Production and managed operations are scoped to the workflows, volumes and deployment model involved, so there is no one-size-fits-all rate card.",
+  },
+  {
+    question: "What do you need from us?",
+    answer:
+      "Access to the data and systems for one workflow, a reviewer who can judge the agent's output, and a success metric we agree before we start. Everything else is on us.",
+  },
+  {
+    question: "What happens after the proof of concept?",
+    answer:
+      "You get the results and a go / no-go recommendation. If it proves its value, we give you a written plan and estimate for production. If it doesn't, you have no obligation to continue.",
+  },
+];
+
+/** Concrete before / after examples for the home page, one per lead industry. */
+export const BEFORE_AFTER: {
+  industry: string;
+  slug: "law" | "finance" | "healthcare";
+  agent: string;
+  before: string;
+  after: string;
+}[] = [
+  {
+    industry: "Law",
+    slug: "law",
+    agent: "Contract Review Agent",
+    before: "A lawyer reads every inbound NDA line by line and checks it against the playbook.",
+    after:
+      "The agent extracts key terms, flags deviations and drafts redlines. The attorney reviews and approves.",
+  },
+  {
+    industry: "Finance",
+    slug: "finance",
+    agent: "Accounts Payable Agent",
+    before: "The team matches invoices to purchase orders by hand and chases exceptions by email.",
+    after:
+      "The agent matches and validates each invoice, then routes mismatches to approvers within their limits.",
+  },
+  {
+    industry: "Healthcare",
+    slug: "healthcare",
+    agent: "Prior Authorisation Agent",
+    before: "Staff compile clinical documents for every authorisation request and track each one.",
+    after:
+      "The agent assembles the request to the payer's criteria. Clinical staff review before it is sent.",
+  },
+];
+
+/** What a customer provides for the proof of concept. */
+export const POC_REQUIREMENTS: { title: string; description: string }[] = [
+  {
+    title: "Data access",
+    description: "Access to the documents, data and systems behind one workflow.",
+  },
+  {
+    title: "A reviewer",
+    description: "Someone who knows the work and can judge whether the agent got it right.",
+  },
+  {
+    title: "A success metric",
+    description: "One measurable outcome we agree before we start, such as time saved or accuracy.",
+  },
+];
+
+/** Indicative security review path shown on the security page. Real timing depends on your process. */
+export const SECURITY_REVIEW_STEPS: Step[] = [
+  {
+    title: "Request",
+    description:
+      "You ask for our security package and send your questionnaire, and we agree an NDA.",
+  },
+  {
+    title: "Share",
+    description: "We share the security documents and answer the questionnaire.",
+  },
+  {
+    title: "Review",
+    description: "Your security team reviews, and we join calls to answer follow-up questions.",
+  },
+  {
+    title: "Sign-off",
+    description: "You approve the deployment model and data handling before any live data is used.",
   },
 ];
 

@@ -29,16 +29,38 @@ export const SITE = {
   sameAs: [] as string[],
 } as const;
 
-export type NavLink = { label: string; href: Route };
+export type NavLink = { label: string; href: Route; description?: string };
 
-export const MAIN_NAV: NavLink[] = [
-  { label: "Proof of concept", href: "/engagement" },
-  { label: "Platform", href: "/platform" },
-  { label: "Cloud & Infra", href: "/cloud-infra" as Route },
-  { label: "Security", href: "/security" },
-  { label: "How we work", href: "/how-we-work" },
-  { label: "About", href: "/about" },
+/** Header: "Platform" dropdown. */
+export const PLATFORM_NAV: NavLink[] = [
+  {
+    label: "Platform",
+    href: "/platform",
+    description: "Orchestration, knowledge, approvals and audit.",
+  },
+  {
+    label: "Cloud & Infra",
+    href: "/cloud-infra" as Route,
+    description: "Deploy in our cloud, yours or a restricted environment.",
+  },
+  {
+    label: "Security",
+    href: "/security",
+    description: "Controls, audit trails and compliance alignment.",
+  },
 ];
+
+/** Header: "Company" dropdown. */
+export const COMPANY_NAV: NavLink[] = [
+  { label: "About", href: "/about", description: "Our mission and principles." },
+  { label: "How we work", href: "/how-we-work", description: "From idea to operation." },
+];
+
+/** Header: single link, shown between the dropdowns and the call to action. */
+export const POC_NAV: NavLink = {
+  label: "Proof of concept",
+  href: "/proof-of-concept" as Route,
+};
 
 export const FOOTER_NAV: { title: string; links: NavLink[] }[] = [
   {
@@ -55,7 +77,7 @@ export const FOOTER_NAV: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "About", href: "/about" },
       { label: "How we work", href: "/how-we-work" },
-      { label: "Proof of concept", href: "/engagement" },
+      POC_NAV,
       { label: "Contact", href: "/contact" },
     ],
   },

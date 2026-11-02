@@ -82,7 +82,6 @@ export default function CloudInfraPage() {
       <CtaBanner
         title="Tell us about your environment"
         description="Share your cloud, network and compliance requirements and we'll propose a deployment model that fits."
-        secondary={{ label: "Security & compliance", href: "/security" }}
       />
     </>
   );

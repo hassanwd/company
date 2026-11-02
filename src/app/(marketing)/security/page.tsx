@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
-import { CheckList, CtaBanner, FeatureGrid } from "@/components/marketing/blocks";
+import Link from "next/link";
+import { CheckList, CtaBanner, FeatureGrid, Steps } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { Button } from "@/components/ui/button";
-import { COMMITMENTS, FRAMEWORKS, SECURITY_PILLARS } from "@/content/company";
+import {
+  COMMITMENTS,
+  FRAMEWORKS,
+  SECURITY_PILLARS,
+  SECURITY_REVIEW_STEPS,
+} from "@/content/company";
 import { SITE } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -20,11 +26,18 @@ export default function SecurityPage() {
         title="Security that stands up to a regulated buyer"
         description="Agents that touch contracts, ledgers and patient records need controls you can verify. Here is how we approach it."
         actions={
-          <Button asChild size="lg">
-            <a href={`mailto:${SITE.securityEmail}?subject=Security%20package%20request`}>
-              Request our security package
-            </a>
-          </Button>
+          <>
+            <Button asChild size="lg">
+              <a href={`mailto:${SITE.securityEmail}?subject=Security%20package%20request`}>
+                Request security package
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href={{ pathname: "/contact", query: { topic: "security" } }}>
+                Or send us a message
+              </Link>
+            </Button>
+          </>
         }
       />
 
@@ -70,6 +83,14 @@ export default function SecurityPage() {
           obligations depend on your use case and jurisdiction; we work with your security, legal
           and compliance teams to assess them.
         </p>
+      </Section>
+
+      <Section
+        eyebrow="Security review"
+        title="Typical security review timeline"
+        description="Most buyers run their own process, so timing varies. This is the path we usually follow together."
+      >
+        <Steps steps={SECURITY_REVIEW_STEPS} />
       </Section>
 
       <Section tone="muted" eyebrow="Disclosure" title="Responsible vulnerability reporting">

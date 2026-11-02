@@ -52,10 +52,7 @@ export default function PlatformPage() {
         </div>
       </Section>
 
-      <CtaBanner
-        title="Want to see the platform on a real workflow?"
-        secondary={{ label: "Security & compliance", href: "/security" }}
-      />
+      <CtaBanner title="Want to see the platform on a real workflow?" />
     </>
   );
 }

@@ -24,9 +24,12 @@ export const leadInputSchema = z.object({
   email: z.email("Enter a valid work email").trim().toLowerCase().max(254),
   company: z.string().trim().min(2, "Please enter your company").max(120),
   role: z.string().trim().max(100),
-  industry: z.enum(values(INDUSTRIES), "Select an industry"),
-  companySize: z.enum(values(COMPANY_SIZES), "Select a company size"),
-  message: z.string().trim().min(10, "Tell us a little more (at least 10 characters)").max(2000),
+  /** Optional: "" means "not provided". */
+  industry: z.enum(values(INDUSTRIES)).or(z.literal("")),
+  /** Optional: "" means "not provided". */
+  companySize: z.enum(values(COMPANY_SIZES)).or(z.literal("")),
+  /** Always sent, but may be short or empty: a demo request needs no essay. */
+  message: z.string().trim().max(2000),
   /** Honeypot: real users never see or fill this. */
   website: z.string().max(200),
 });
