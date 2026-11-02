@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FOOTER_NAV, SITE } from "@/content/site";
-import { Logo } from "./site-header";
+import { Logo } from "./logo";
 import { Container } from "./primitives";
 
 export function SiteFooter() {

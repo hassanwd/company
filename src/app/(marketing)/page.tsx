@@ -62,12 +62,13 @@ export default function HomePage() {
               AI agents that finish the work — with your people in control
             </h1>
             <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg text-pretty sm:text-xl">
-              We design, deploy and operate governed agents for the most regulated industries — from
-              first workflow to production, with approvals, audit trails and security built in.
+              We design, deploy and operate governed agents for industries where accuracy and trust
+              matter — from first workflow to production, with approvals, audit trails and security
+              built in.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <Button asChild size="lg">
-                <Link href="/engagement">Start a 1-month proof of concept</Link>
+                <Link href="/engagement">Start a 4-week proof of concept</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link href="/solutions">
@@ -90,7 +91,7 @@ export default function HomePage() {
               Proof of concept
             </p>
             <h2 className="mt-2 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-              See it work on your own data in 1 month
+              See it work on your own data in 4 weeks
             </h2>
             <p className="mt-4 text-white/85">
               One workflow, a clear go / no-go decision, and an introductory price below typical
@@ -156,7 +157,7 @@ export default function HomePage() {
       <Section
         tone="muted"
         eyebrow="Solutions"
-        title="Purpose-built for regulated industries"
+        title="Built for industries where accuracy and trust matter"
         description="Each solution pairs domain-specific agents with the controls that industry requires."
       >
         <div className="grid gap-4 lg:grid-cols-3">

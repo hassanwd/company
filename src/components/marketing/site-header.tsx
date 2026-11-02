@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Menu, Sparkles, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -14,18 +14,8 @@ import {
 import { MAIN_NAV, SITE } from "@/content/site";
 import { SOLUTIONS, solutionHref } from "@/content/solutions";
 import { cn } from "@/lib/utils";
+import { Logo } from "./logo";
 import { Container } from "./primitives";
-
-export function Logo({ className }: { className?: string }) {
-  return (
-    <span className={cn("flex items-center gap-2 font-semibold tracking-tight", className)}>
-      <span className="bg-primary text-primary-foreground flex size-8 items-center justify-center rounded-lg">
-        <Sparkles className="size-4" aria-hidden />
-      </span>
-      {SITE.name}
-    </span>
-  );
-}
 
 const linkClass = (active: boolean) =>
   cn(

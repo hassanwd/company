@@ -8,7 +8,7 @@ import { DELIVERY_MODELS, GENERAL_FAQS, POC_TERMS, POC_WEEKS, PROCESS } from "@/
 export const metadata: Metadata = {
   title: "Proof of concept",
   description:
-    "Start with a four-week proof of concept on your own data, then scale to production and optionally let us run it. Introductory pricing, below typical market rates.",
+    "Start with a 4-week proof of concept on your own data, then scale to production and optionally let us run it. Introductory pricing, below typical market rates.",
   alternates: { canonical: "/engagement" },
 };
 
@@ -17,7 +17,7 @@ export default function EngagementPage() {
     <>
       <PageHero
         eyebrow="Proof of concept"
-        title="Start with a four-week proof of concept"
+        title="Start with a 4-week proof of concept"
         description="Every engagement begins the same way: one workflow, your own data and a clear decision at the end. After that, we show you exactly what we deliver and how."
         actions={
           <Button asChild size="lg">
@@ -28,7 +28,7 @@ export default function EngagementPage() {
 
       <Section
         eyebrow="Proof of concept"
-        title="See it work on your own data in four weeks"
+        title="See it work on your own data in 4 weeks"
         description="A focused proof of concept for one workflow at an introductory price, below typical market rates, with a clear decision at the end."
       >
         <Steps steps={POC_WEEKS} layout="grid" />

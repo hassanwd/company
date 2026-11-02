@@ -1,6 +1,6 @@
 # Company — Enterprise Agentic AI Website
 
-Next.js 16 (App Router) + TypeScript. A marketing website for an agentic-AI software company serving **law, finance and healthcare**, plus a small internal console. No login/auth. The server exposes **no public REST API**: pages are rendered on the server and forms/mutations use Server Actions.
+Next.js 16 (App Router) + TypeScript. A marketing website for an agentic-AI software company serving **law, finance, healthcare and retail**, plus a small internal console. No login/auth. The server exposes **no public REST API**: pages are rendered on the server and forms/mutations use Server Actions.
 
 ## Quick start
 
@@ -23,23 +23,23 @@ npm run dev        # http://localhost:3000
 2. **Set `SITE_URL`** to your real origin (canonical URLs, sitemap, Open Graph). See `.env.example`.
 3. **Verify every claim.** Copy in `src/content/` describes product capabilities, controls and framework alignment (SOC 2, ISO 27001, HIPAA, GDPR, PCI DSS, NIST AI RMF, SSO/SCIM, VPC deployment, "never trains on your data", pen-testing…). Keep only what is true for your product today. No customer names, logos, testimonials or metrics are included — add real ones when you have them.
 4. **Legal review** of `/privacy` and `/terms` (these are starting templates, not legal advice).
-5. **Wire up leads:** demo requests are stored in memory only (lost on restart). Implement `LeadsRepository` in [`src/server/db/leads.repository.ts`](src/server/db/leads.repository.ts) against your CRM/database and add a sales notification in `leads.service.ts`.
+5. **Wire up leads:** each demo request is emailed to your sales inbox through [Resend](https://resend.com). Set `RESEND_API_KEY`, `LEADS_FROM_EMAIL` and `LEADS_TO_EMAIL` (see `.env.example`). In production the server **refuses to start** without them, so leads cannot be silently lost. To also keep a database copy, implement `LeadsRepository` in [`src/server/db/leads.repository.ts`](src/server/db/leads.repository.ts).
 6. **Internal console** (`/dashboard`, `/users`) has **no authentication**. It is on in development and **returns 404 in production** unless `ENABLE_CONSOLE=true`. Only enable it on a private deployment, or delete `src/app/(dashboard)`, `src/features/users` and related server files.
-7. Add a social/OG image and favicon; add analytics only if you want it (the privacy policy currently states there is none).
+7. The favicon and social share image are generated from the brand name, tagline and colour (`src/app/icon.tsx`, `opengraph-image.tsx`); replace them with real artwork when you have it. Analytics are off unless `NEXT_PUBLIC_ANALYTICS_DOMAIN` is set.
 
 ## Site map
 
-`/` · `/solutions` · `/solutions/law` · `/solutions/finance` · `/solutions/healthcare` · `/platform` · `/security` · `/how-we-work` · `/engagement` · `/about` · `/contact` (demo request) · `/privacy` · `/terms` · `/sitemap.xml` · `/robots.txt`
+`/` · `/solutions` · `/solutions/law` · `/solutions/finance` · `/solutions/healthcare` · `/solutions/retail` · `/platform` · `/cloud-infra` · `/security` · `/how-we-work` · `/engagement` · `/about` · `/contact` (demo request) · `/privacy` · `/terms` · `/sitemap.xml` · `/robots.txt`
 
 ## Editing content
 
 All copy is typed data in `src/content/` — no component edits needed:
 
-| File           | Contains                                                        |
-| -------------- | --------------------------------------------------------------- |
-| `site.ts`      | Brand, contact details, navigation                              |
-| `solutions.ts` | Law / Finance / Healthcare: agents, workflows, governance, FAQs |
-| `company.ts`   | Platform features, security pillars, process, engagement, FAQs  |
+| File           | Contains                                                                 |
+| -------------- | ------------------------------------------------------------------------ |
+| `site.ts`      | Brand, contact details, navigation                                       |
+| `solutions.ts` | Law / Finance / Healthcare / Retail: agents, workflows, governance, FAQs |
+| `company.ts`   | Platform features, security pillars, process, engagement, FAQs           |
 
 Adding a vertical = add an entry to `SOLUTIONS` (pages, nav, sitemap and cards update automatically).
 
@@ -73,6 +73,6 @@ src/
 - Demo form: honeypot field + 5 submissions/hour/IP; log lines contain IDs only, never personal data.
 - Headers: CSP, HSTS, `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy: no-referrer`, COOP/CORP, `Permissions-Policy` (FLoC/Topics off); `X-Powered-By` removed; production source maps off.
 - Public pages are indexable; the console is `noindex` and disallowed in `robots.txt`.
-- No analytics or cookies; Next.js telemetry disabled in npm scripts.
+- No cookies. Analytics are off unless you set `NEXT_PUBLIC_ANALYTICS_DOMAIN` (cookie-less Plausible); Next.js telemetry is disabled in npm scripts.
 
 > **Limits:** anything a browser calls is visible in DevTools — this removes a readable, scriptable API, not network visibility. Rate limiting is per-instance and in-memory (use Redis for multiple instances) and trusts `X-Forwarded-For`, so run behind a proxy you control. CSP allows inline scripts (Next bootstrap); move to nonces to tighten.

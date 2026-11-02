@@ -1,19 +1,32 @@
 import type { Route } from "next";
 
 /**
- * Single place to rebrand the website. TODO before launch: replace the placeholder company
- * name, contact details and legal entity.
+ * Single place to rebrand the website. Every value marked TODO is a placeholder that must be
+ * replaced before launch — do not invent real-looking values.
  */
 export const SITE = {
+  // TODO: company name
   name: "Company",
+  // TODO: legal entity name
   legalName: "Company, Inc.",
   tagline:
     "Agentic AI for law, finance, healthcare and retail — built for the enterprise, end to end.",
   description:
     "We design, deploy and operate governed AI agents that complete real work in law, finance, healthcare and retail — with human approval, full audit trails and enterprise-grade security.",
+  // TODO: sales email
   email: "hello@example.com",
+  // TODO: security email
   securityEmail: "security@example.com",
+  // TODO: office address
   address: "Your Street, Your City, Your Country",
+  // TODO: brand primary colour. Keep in sync with --primary in src/app/globals.css.
+  brandColor: "#4f46e5",
+  // TODO: booking link (Calendly / HubSpot / Cal.com). Leave empty to hide "Book directly".
+  bookingUrl: "" as string,
+  // TODO: starting price for the 4-week proof of concept, e.g. "$20,000". Leave empty to hide.
+  pocStartingPrice: "" as string,
+  // TODO: social profile URLs (LinkedIn, X, GitHub) used for structured data.
+  sameAs: [] as string[],
 } as const;
 
 export type NavLink = { label: string; href: Route };

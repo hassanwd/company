@@ -377,7 +377,7 @@ export const DELIVERY_MODELS: {
   },
 ];
 
-/** The four-week proof of concept shown on the engagement page. */
+/** The 4-week proof of concept shown on the engagement page. */
 export const POC_WEEKS: Step[] = [
   {
     title: "Week 1 · Set up",
@@ -429,7 +429,7 @@ export const GENERAL_FAQS: Faq[] = [
   {
     question: "How long until we see value?",
     answer:
-      "We start with one well-chosen workflow and a measured pilot, so you see real results on your own data before committing to a broader rollout. A proof of concept runs four weeks from the day data and system access are ready; how long access takes depends on your security and review requirements, which we scope together up front.",
+      "We start with one well-chosen workflow and a measured pilot, so you see real results on your own data before committing to a broader rollout. A proof of concept runs 4 weeks from the day data and system access are ready; how long access takes depends on your security and review requirements, which we scope together up front.",
   },
   {
     question: "Can you work with our existing systems and AI models?",

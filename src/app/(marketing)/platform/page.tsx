@@ -16,7 +16,7 @@ export default function PlatformPage() {
       <PageHero
         eyebrow="Platform"
         title="The control plane for enterprise AI agents"
-        description="Build, run and govern agents in one place — with the approvals, evidence and isolation regulated industries require."
+        description="Build, run and govern agents in one place — with the approvals, evidence and isolation high-stakes industries require."
       />
 
       <Section

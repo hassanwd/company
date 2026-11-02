@@ -1,7 +1,17 @@
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import { CtaBanner, SolutionCard } from "@/components/marketing/blocks";
+import Link from "next/link";
+import { CtaBanner, FeatureGrid, SolutionCard } from "@/components/marketing/blocks";
 import { PageHero, Section } from "@/components/marketing/primitives";
+import { Button } from "@/components/ui/button";
+import { PLATFORM_FEATURES } from "@/content/company";
 import { SOLUTIONS } from "@/content/solutions";
+
+/** The platform capabilities every solution shares, in the order they are shown. */
+const SHARED_PILLAR_TITLES = ["Human-in-the-loop", "Guardrails & policy", "Observability & audit"];
+const SHARED_PILLARS = SHARED_PILLAR_TITLES.flatMap((title) =>
+  PLATFORM_FEATURES.filter((feature) => feature.title === title),
+);
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -30,7 +40,16 @@ export default function SolutionsPage() {
         eyebrow="Common foundation"
         title="Different industries, one governed platform"
         description="Every solution runs on the same platform: approvals where risk is high, evidence for every action, and deployment in the environment you choose."
-      />
+      >
+        <FeatureGrid features={SHARED_PILLARS} />
+        <div className="mt-8">
+          <Button asChild variant="outline">
+            <Link href="/platform">
+              See the full platform <ArrowRight className="size-4" aria-hidden />
+            </Link>
+          </Button>
+        </div>
+      </Section>
       <CtaBanner />
     </>
   );
