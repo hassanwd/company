@@ -38,7 +38,7 @@ export default function InsightsPage() {
                   href={`/insights/${slug}` as Route}
                   className="border-border bg-card focus-visible:ring-ring block h-full rounded-xl border p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:outline-none"
                 >
-                  <time dateTime={date} className="text-muted-foreground text-xs">
+                  <time dateTime={date} className="text-muted-foreground text-sm">
                     {formatDate(date)}
                   </time>
                   <h2 className="mt-2 text-xl font-semibold">{title}</h2>

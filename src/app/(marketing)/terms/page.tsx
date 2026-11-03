@@ -27,7 +27,7 @@ export default function TermsPage() {
           <h2>Use of the website</h2>
           <p>
             You may use this website for lawful purposes only. You agree not to attempt to gain
-            unauthorised access, interfere with its operation, scrape it in violation of our robots
+            unauthorized access, interfere with its operation, scrape it in violation of our robots
             rules, or submit unlawful or malicious content.
           </p>
 

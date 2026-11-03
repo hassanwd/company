@@ -1,4 +1,4 @@
-import { ArrowRight, Check, FileText, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
@@ -188,59 +188,6 @@ export function CtaBanner({
         </div>
       </Container>
     </section>
-  );
-}
-
-/** Static preview of an agent run, used on the home page to show the human approval step. */
-export function AgentRunPreview() {
-  const steps = [
-    ["Read the NDA", "12 pages, 6 key terms extracted"],
-    ["Compared to your playbook", "3 deviations found, 1 critical"],
-    ["Drafted redlines", "Each change comes with its reasoning"],
-  ];
-  return (
-    <div className="border-border bg-card mx-auto max-w-2xl rounded-2xl border p-5 text-left shadow-lg sm:p-6">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span className="bg-primary/10 text-primary flex size-9 items-center justify-center rounded-lg">
-            <FileText className="size-4" aria-hidden />
-          </span>
-          <div>
-            <p className="text-sm font-semibold">Contract Review Agent</p>
-            <p className="text-muted-foreground text-xs">Inbound NDA · Acme Supplies</p>
-          </div>
-        </div>
-        <span className="bg-success/10 text-success rounded-full px-2.5 py-1 text-xs font-medium">
-          Ready for review
-        </span>
-      </div>
-      <ul className="mt-5 flex flex-col gap-3">
-        {steps.map(([title, detail], index) => (
-          <li
-            key={title}
-            className="agent-step flex gap-3"
-            style={{ "--step-delay": `${index * 600}ms` } as CSSProperties}
-          >
-            <span className="bg-success/10 text-success mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full">
-              <Check className="size-3" aria-hidden />
-            </span>
-            <div className="text-sm">
-              <p className="font-medium">{title}</p>
-              <p className="text-muted-foreground">{detail}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div className="agent-approval border-border bg-muted mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border p-3">
-        <span className="flex items-center gap-2 text-sm font-medium">
-          <ShieldCheck className="text-primary size-4" aria-hidden />
-          Waiting for attorney approval
-        </span>
-        <span className="bg-primary text-primary-foreground rounded-md px-3 py-1.5 text-xs font-medium">
-          Review redlines
-        </span>
-      </div>
-    </div>
   );
 }
 

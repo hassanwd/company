@@ -45,7 +45,7 @@ export type Solution = {
   slug: "law" | "finance" | "healthcare" | "retail";
   name: string;
   icon: LucideIcon;
-  /** Industry accent colour (hex), used for the card's top edge and icon. */
+  /** Industry accent color (hex), used for the card's top edge and icon. */
   accent: string;
   headline: string;
   tagline: string;
@@ -105,7 +105,7 @@ export const SOLUTIONS: Solution[] = [
         name: "Legal Research Agent",
         icon: BookOpen,
         description:
-          "Searches your approved sources, summarises findings with pinpoint citations, and highlights conflicting or superseded authority.",
+          "Searches your approved sources, summarizes findings with pinpoint citations, and highlights conflicting or superseded authority.",
         checkpoint:
           "Every citation links to its source; the attorney verifies before relying on it.",
       },
@@ -303,9 +303,9 @@ export const SOLUTIONS: Solution[] = [
         name: "Credit Analysis Support Agent",
         icon: ChartLine,
         description:
-          "Spreads financials, summarises risk factors against policy and prepares a memo with the evidence cited.",
+          "Spreads financials, summarizes risk factors against policy and prepares a memo with the evidence cited.",
         checkpoint:
-          "Credit decisions stay with authorised underwriters; the agent supports, never decides.",
+          "Credit decisions stay with authorized underwriters; the agent supports, never decides.",
       },
       {
         name: "Audit & Regulatory Reporting Agent",
@@ -369,7 +369,7 @@ export const SOLUTIONS: Solution[] = [
       {
         title: "Model risk management",
         description:
-          "Documented behaviour, versioning, testing and monitoring that support your MRM framework.",
+          "Documented behavior, versioning, testing and monitoring that support your MRM framework.",
       },
       {
         title: "Explainable decisions",
@@ -416,14 +416,14 @@ export const SOLUTIONS: Solution[] = [
     icon: HeartPulse,
     accent: "#e11d48",
     headline: "Agents that take the administrative load off clinicians and care teams",
-    tagline: "Authorisations, revenue cycle, documentation and coordination — with privacy first.",
+    tagline: "Authorizations, revenue cycle, documentation and coordination — with privacy first.",
     summary:
       "Administrative work consumes time that belongs to patients. Our agents handle the paperwork, follow-ups and coordination that surround care, operate on the minimum necessary data, and keep licensed clinicians in charge of every clinical decision.",
     challenges: [
       {
         title: "Administrative burden",
         description:
-          "Prior authorisations, referrals and forms consume clinical and front-office hours every day.",
+          "Prior authorizations, referrals and forms consume clinical and front-office hours every day.",
       },
       {
         title: "Revenue leakage",
@@ -442,7 +442,7 @@ export const SOLUTIONS: Solution[] = [
     ],
     agents: [
       {
-        name: "Prior Authorisation Agent",
+        name: "Prior Authorization Agent",
         icon: ClipboardCheck,
         description:
           "Determines requirements, compiles supporting clinical documentation, submits requests and tracks status through to a decision.",
@@ -452,7 +452,7 @@ export const SOLUTIONS: Solution[] = [
         name: "Claims & Denials Agent",
         icon: Receipt,
         description:
-          "Checks claims for coding and documentation gaps before submission, categorises denials and drafts appeals with the evidence attached.",
+          "Checks claims for coding and documentation gaps before submission, categorizes denials and drafts appeals with the evidence attached.",
         checkpoint: "Coders and billing leads approve code changes and appeals.",
       },
       {
@@ -480,17 +480,17 @@ export const SOLUTIONS: Solution[] = [
         name: "Quality & Compliance Reporting Agent",
         icon: ChartColumn,
         description:
-          "Assembles measure data, identifies documentation gaps and prepares reports for quality and regulatory programmes.",
+          "Assembles measure data, identifies documentation gaps and prepares reports for quality and regulatory programs.",
         checkpoint: "Quality leaders validate figures before submission.",
       },
     ],
     workflow: {
-      title: "From order to authorisation decision",
+      title: "From order to authorization decision",
       scenario: "Illustrative workflow — configured to your EHR, payers and policies.",
       steps: [
         {
           title: "Detect",
-          description: "A new order is detected and checked for payer authorisation requirements.",
+          description: "A new order is detected and checked for payer authorization requirements.",
         },
         {
           title: "Gather",
@@ -504,7 +504,7 @@ export const SOLUTIONS: Solution[] = [
         },
         {
           title: "Clinical review",
-          description: "Authorised staff review and approve the packet before it is sent.",
+          description: "Authorized staff review and approve the packet before it is sent.",
         },
         {
           title: "Submit & track",
@@ -590,7 +590,7 @@ export const SOLUTIONS: Solution[] = [
     headline: "Agents that keep shelves stocked, customers served and margins healthy",
     tagline: "Merchandising, supply chain, service and loyalty — with your teams making the calls.",
     summary:
-      "Retail runs on thin margins and fast-moving signals across stores, channels and suppliers. Our agents handle the routine analysis and follow-up — forecasting, replenishment, catalogue upkeep, customer queries — and escalate the judgment calls to your people.",
+      "Retail runs on thin margins and fast-moving signals across stores, channels and suppliers. Our agents handle the routine analysis and follow-up — forecasting, replenishment, catalog upkeep, customer queries — and escalate the judgment calls to your people.",
     challenges: [
       {
         title: "Stock in the wrong place",
@@ -598,7 +598,7 @@ export const SOLUTIONS: Solution[] = [
           "Stock-outs lose sales while overstock ties up cash, and planners can't react to every store and channel by hand.",
       },
       {
-        title: "Catalogue and pricing upkeep",
+        title: "Catalog and pricing upkeep",
         description:
           "Thousands of products need accurate content and prices across channels, and errors reach customers immediately.",
       },
@@ -630,17 +630,17 @@ export const SOLUTIONS: Solution[] = [
         checkpoint: "Buyers approve orders above agreed value or risk thresholds.",
       },
       {
-        name: "Product Catalogue Agent",
+        name: "Product Catalog Agent",
         icon: Tags,
         description:
-          "Enriches and standardises product data, drafts descriptions and attributes and checks listings for gaps and inconsistencies.",
+          "Enriches and standardizes product data, drafts descriptions and attributes and checks listings for gaps and inconsistencies.",
         checkpoint: "Merchandisers approve content before it is published to any channel.",
       },
       {
         name: "Pricing & Promotions Agent",
         icon: BadgeDollarSign,
         description:
-          "Analyses elasticity, competitor moves and margin to recommend price and promotion changes with the expected impact.",
+          "Analyzes elasticity, competitor moves and margin to recommend price and promotion changes with the expected impact.",
         checkpoint: "Pricing owners approve every change within the guardrails you set.",
       },
       {
@@ -709,7 +709,7 @@ export const SOLUTIONS: Solution[] = [
       {
         title: "Customer data protection",
         description:
-          "Access follows least privilege, personal data is minimised and payment data stays out of agent context.",
+          "Access follows least privilege, personal data is minimized and payment data stays out of agent context.",
       },
       {
         title: "Approval thresholds",

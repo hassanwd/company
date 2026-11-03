@@ -273,7 +273,7 @@ export const PROCESS: {
     description:
       "We map your workflows, systems, data and risk posture with the people who do the work, and pick the use cases worth building first.",
     deliverables: [
-      "Prioritised use-case backlog",
+      "Prioritized use-case backlog",
       "Process and data map",
       "Risk and compliance assessment",
       "Success criteria",
@@ -453,40 +453,6 @@ export const POC_FAQS: Faq[] = [
     question: "What happens after the proof of concept?",
     answer:
       "You get the results and a go / no-go recommendation. If it proves its value, we give you a written plan and estimate for production. If it doesn't, you have no obligation to continue.",
-  },
-];
-
-/** Concrete before / after examples for the home page, one per lead industry. */
-export const BEFORE_AFTER: {
-  industry: string;
-  slug: "law" | "finance" | "healthcare";
-  agent: string;
-  before: string;
-  after: string;
-}[] = [
-  {
-    industry: "Law",
-    slug: "law",
-    agent: "Contract Review Agent",
-    before: "A lawyer reads every inbound NDA line by line and checks it against the playbook.",
-    after:
-      "The agent extracts key terms, flags deviations and drafts redlines. The attorney reviews and approves.",
-  },
-  {
-    industry: "Finance",
-    slug: "finance",
-    agent: "Accounts Payable Agent",
-    before: "The team matches invoices to purchase orders by hand and chases exceptions by email.",
-    after:
-      "The agent matches and validates each invoice, then routes mismatches to approvers within their limits.",
-  },
-  {
-    industry: "Healthcare",
-    slug: "healthcare",
-    agent: "Prior Authorisation Agent",
-    before: "Staff compile clinical documents for every authorisation request and track each one.",
-    after:
-      "The agent assembles the request to the payer's criteria. Clinical staff review before it is sent.",
   },
 ];
 

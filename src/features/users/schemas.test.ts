@@ -9,7 +9,7 @@ const valid = {
 } as const;
 
 describe("user schemas", () => {
-  it("normalises email and rejects bad input", () => {
+  it("normalizes email and rejects bad input", () => {
     const ok = userInputSchema.safeParse(valid);
     expect(ok.success && ok.data.email).toBe("ada@example.com");
     expect(userInputSchema.safeParse({ ...valid, email: "nope" }).success).toBe(false);

@@ -19,7 +19,7 @@ export const SITE = {
   securityEmail: "security@example.com",
   // TODO: office address
   address: "Your Street, Your City, Your Country",
-  // TODO: brand primary colour. Keep in sync with --primary in src/app/globals.css.
+  // TODO: brand primary color. Keep in sync with --primary in src/app/globals.css.
   brandColor: "#4f46e5",
   // TODO: booking link (Calendly / HubSpot / Cal.com). Leave empty to hide "Book directly".
   bookingUrl: "" as string,

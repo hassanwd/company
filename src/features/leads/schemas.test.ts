@@ -16,7 +16,7 @@ describe("leadInputSchema", () => {
   it("accepts a request with only name, email and company", () => {
     const result = leadInputSchema.safeParse(minimal);
     expect(result.success).toBe(true);
-    // Email is normalised so sales replies go to a clean address.
+    // Email is normalized so sales replies go to a clean address.
     expect(result.success && result.data.email).toBe("ada@example.com");
   });
 

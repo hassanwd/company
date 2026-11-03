@@ -69,7 +69,7 @@ export default function PrivacyPage() {
           <h2>Retention</h2>
           <p>
             We keep enquiry information only as long as needed to handle your request and our
-            legitimate business relationship, then delete or anonymise it.
+            legitimate business relationship, then delete or anonymize it.
           </p>
 
           <h2>Your rights</h2>
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
 
           <h2>Security</h2>
           <p>
-            We use technical and organisational measures to protect personal information, including
+            We use technical and organizational measures to protect personal information, including
             encryption in transit and access controls. No method of transmission is completely
             secure.
           </p>

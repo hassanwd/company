@@ -1,22 +1,27 @@
-import { ArrowRight, ClipboardCheck, Flag, Hammer, Plug } from "lucide-react";
+import {
+  ArrowRight,
+  ClipboardCheck,
+  Flag,
+  Hammer,
+  KeyRound,
+  Lock,
+  Plug,
+  ScrollText,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  AgentRunPreview,
-  CheckList,
-  CtaBanner,
-  Faq,
-  SolutionCard,
-  Steps,
-} from "@/components/marketing/blocks";
+import { AgentShowcase } from "@/components/marketing/agent-showcase";
+import { CheckList, CtaBanner, Faq, SolutionCard, Steps } from "@/components/marketing/blocks";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { Container, Eyebrow, Section } from "@/components/marketing/primitives";
 import { LogoStrip, ProofSection } from "@/components/marketing/proof";
 import { Button } from "@/components/ui/button";
-import { AGENT_LOOP, BEFORE_AFTER, COMMITMENTS, GENERAL_FAQS, POC_WEEKS } from "@/content/company";
+import { AGENT_LOOP, COMMITMENTS, GENERAL_FAQS, POC_WEEKS } from "@/content/company";
 import { CASE_STUDIES, CUSTOMER_LOGOS, TESTIMONIALS } from "@/content/proof";
 import { SITE } from "@/content/site";
-import { SOLUTIONS, solutionHref } from "@/content/solutions";
+import { SOLUTIONS } from "@/content/solutions";
 import { pageMetadata } from "@/lib/seo";
 import { faqLd, organizationLd } from "@/lib/structured-data";
 
@@ -35,6 +40,14 @@ export const metadata: Metadata = {
 /** One icon per proof-of-concept week, in the same order as POC_WEEKS. */
 const POC_ICONS = [Plug, Hammer, ClipboardCheck, Flag];
 
+/** Short trust points shown under the solution cards. */
+const TRUST_POINTS = [
+  { icon: ShieldCheck, label: "Human approval on every decision" },
+  { icon: ScrollText, label: "Full audit trail" },
+  { icon: KeyRound, label: "Role-based access" },
+  { icon: Lock, label: "Your data stays private" },
+];
+
 const FAQS = GENERAL_FAQS.slice(0, 5);
 
 export default function HomePage() {
@@ -45,34 +58,35 @@ export default function HomePage() {
       {/* Hero */}
       <div className="border-border relative overflow-hidden border-b">
         <div className="bg-hero absolute inset-0 -z-10" aria-hidden />
-        <Container className="py-20 sm:py-28">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="border-border bg-card text-muted-foreground mx-auto inline-flex rounded-full border px-4 py-1.5 text-sm">
-              Enterprise agentic AI · Law · Finance · Healthcare · Retail
-            </p>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">
-              AI agents that finish the work — with your people in control
-            </h1>
-            <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg text-pretty sm:text-xl">
-              We design, deploy and operate governed agents for industries where accuracy and trust
-              matter — from first workflow to production, with approvals, audit trails and security
-              built in.
-            </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <Button asChild size="lg">
-                <Link href="/contact" data-cta="hero">
-                  Book a demo
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/proof-of-concept" data-cta="hero-poc">
-                  See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
-                </Link>
-              </Button>
+        <Container className="py-16 sm:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+            <div className="text-center lg:text-left">
+              <p className="border-border bg-card text-foreground inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold tracking-[0.14em] uppercase shadow-sm">
+                <Sparkles className="text-primary size-3.5" aria-hidden />
+                Enterprise agentic AI
+              </p>
+              <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-5xl xl:text-6xl">
+                AI agents that finish the work — with your people in control
+              </h1>
+              <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-lg text-pretty sm:text-xl lg:mx-0">
+                We design, deploy and operate governed AI agents for Law, Finance, Healthcare and
+                Retail. From first workflow to production, with approvals, audit trails and security
+                built in.
+              </p>
+              <div className="mt-10 flex flex-wrap justify-center gap-3 lg:justify-start">
+                <Button asChild size="lg">
+                  <Link href="/contact" data-cta="hero">
+                    Book a demo
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/proof-of-concept" data-cta="hero-poc">
+                    See the 4-week proof of concept <ArrowRight className="size-4" aria-hidden />
+                  </Link>
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="mt-14">
-            <AgentRunPreview />
+            <AgentShowcase />
           </div>
         </Container>
       </div>
@@ -80,50 +94,25 @@ export default function HomePage() {
       {/* Customer logos: hidden until real logos are added in src/content/proof.ts */}
       <LogoStrip logos={CUSTOMER_LOGOS} />
 
-      {/* What agents do */}
-      <Section
-        eyebrow="What agents do"
-        title="The same work, with a person in control"
-        description="Three examples of how an agent takes the repeatable first pass while your team keeps the decision."
-      >
-        <ul className="grid gap-4 lg:grid-cols-3">
-          {BEFORE_AFTER.map(({ industry, slug, agent, before, after }) => (
-            <li
-              key={slug}
-              className="border-border bg-card flex flex-col rounded-xl border p-6 shadow-sm"
-            >
-              <p className="text-primary text-sm font-semibold">{industry}</p>
-              <p className="text-muted-foreground mt-3 text-xs font-semibold tracking-wide uppercase">
-                Before
-              </p>
-              <p className="mt-1 text-sm">{before}</p>
-              <p className="text-muted-foreground mt-4 text-xs font-semibold tracking-wide uppercase">
-                With the {agent}
-              </p>
-              <p className="mt-1 text-sm">{after}</p>
-              <Link
-                href={solutionHref(slug)}
-                className="text-primary focus-visible:ring-ring mt-auto inline-flex items-center gap-1 rounded pt-5 text-sm font-medium hover:underline focus-visible:ring-2 focus-visible:outline-none"
-              >
-                See {industry.toLowerCase()} solutions
-                <ArrowRight className="size-4" aria-hidden />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
       <Section
         tone="muted"
         eyebrow="Solutions"
-        title="Built for industries where accuracy and trust matter"
-        description="Each solution pairs domain-specific agents with the controls that industry requires."
+        title="Agents built for your industry"
+        description="Each solution pairs domain-specific agents with approvals, audit trails and the controls your industry requires."
       >
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {SOLUTIONS.map((solution) => (
             <SolutionCard key={solution.slug} solution={solution} />
           ))}
         </div>
+        <ul className="text-muted-foreground mt-10 grid grid-cols-2 gap-x-6 gap-y-4 text-sm lg:flex lg:flex-wrap lg:justify-between">
+          {TRUST_POINTS.map(({ icon: Icon, label }) => (
+            <li key={label} className="flex items-center gap-2.5">
+              <Icon className="text-primary size-4 shrink-0" aria-hidden />
+              {label}
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section

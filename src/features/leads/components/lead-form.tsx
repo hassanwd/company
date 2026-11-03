@@ -106,7 +106,7 @@ export function LeadForm({
         control={control}
         name="message"
         label="What would you like to automate?"
-        placeholder="e.g. Reviewing inbound NDAs, matching invoices, or preparing prior authorisations. A sentence is plenty."
+        placeholder="e.g. Reviewing inbound NDAs, matching invoices, or preparing prior authorizations. A sentence is plenty."
         rows={4}
       />
 
@@ -121,7 +121,7 @@ export function LeadForm({
       <Button type="submit" size="lg" loading={submit.isPending}>
         Book a demo
       </Button>
-      <p className="text-muted-foreground text-xs">
+      <p className="text-muted-foreground text-sm">
         By submitting you agree to our{" "}
         <Link href="/privacy" className="underline">
           privacy policy

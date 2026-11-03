@@ -49,7 +49,7 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
         {study.results.map(({ value, label }) => (
           <li key={label}>
             <p className="text-2xl font-semibold tracking-tight">{value}</p>
-            <p className="text-muted-foreground text-xs">{label}</p>
+            <p className="text-muted-foreground text-sm">{label}</p>
           </li>
         ))}
       </ul>

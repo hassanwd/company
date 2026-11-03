@@ -25,7 +25,7 @@ npm run dev        # http://localhost:3000
 4. **Legal review** of `/privacy` and `/terms` (these are starting templates, not legal advice).
 5. **Wire up leads:** each demo request is emailed to your sales inbox through [Resend](https://resend.com). Set `RESEND_API_KEY`, `LEADS_FROM_EMAIL` and `LEADS_TO_EMAIL` (see `.env.example`). In production the server **refuses to start** without them, so leads cannot be silently lost. To also keep a database copy, implement `LeadsRepository` in [`src/server/db/leads.repository.ts`](src/server/db/leads.repository.ts).
 6. **Internal console** (`/dashboard`, `/users`) has **no authentication**. It is on in development and **returns 404 in production** unless `ENABLE_CONSOLE=true`. Only enable it on a private deployment, or delete `src/app/(dashboard)`, `src/features/users` and related server files.
-7. The favicon and social share image are generated from the brand name, tagline and colour (`src/app/icon.tsx`, `opengraph-image.tsx`); replace them with real artwork when you have it. Analytics are off unless `NEXT_PUBLIC_ANALYTICS_DOMAIN` is set.
+7. The favicon and social share image are generated from the brand name, tagline and color (`src/app/icon.tsx`, `opengraph-image.tsx`); replace them with real artwork when you have it. Analytics are off unless `NEXT_PUBLIC_ANALYTICS_DOMAIN` is set.
 
 ## Site map
 

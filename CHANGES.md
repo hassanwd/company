@@ -41,13 +41,13 @@ Work was done in five phases, one commit each on the `site-improvements` branch.
 ## Phase 5 — Quality
 
 - 17 new Vitest tests (lead schema, lead service, grid/column logic). All 23 tests pass.
-- Layout checked at 360, 768, 1024 and 1440 px on 12 pages: no horizontal scroll.
+- Layout checked at 360, 768, 1024 and 1440 px on 4 pages: no horizontal scroll.
 - Success green darkened to `#15803d` for text contrast.
 
 ## Needs real data before launch
 
 - Company name, legal entity, sales and security emails, office address (`content/site.ts`)
-- Primary market (decides US vs UK spelling), brand colour, booking link, proof-of-concept starting price
+- Primary market (decides US vs UK spelling), brand color, booking link, proof-of-concept starting price
 - Customer logos, case studies and testimonials (`content/proof.ts`)
 - Insights articles (`content/insights.ts`)
 - Team information and certifications: none are shown; do not add any that are not true
