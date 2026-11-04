@@ -74,11 +74,14 @@ export function PageHero({
   eyebrow,
   title,
   description,
+  note,
   actions,
 }: {
   eyebrow?: string;
   title: string;
   description: string;
+  /** Short line under the description, e.g. who the page is for. */
+  note?: string;
   actions?: ReactNode;
 }) {
   return (
@@ -93,6 +96,7 @@ export function PageHero({
           <p className="text-muted-foreground mt-5 max-w-prose text-lg text-pretty sm:text-xl">
             {description}
           </p>
+          {note ? <p className="mt-4 text-base font-medium">{note}</p> : null}
           {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
         </div>
       </Container>

@@ -5,7 +5,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Feature, Step } from "@/content/company";
-import type { Faq as FaqItem, Solution } from "@/content/solutions";
+import type { Faq as FaqItem, HandledItem, Solution } from "@/content/solutions";
 import { solutionHref } from "@/content/solutions";
 import { featureGridClass, STEP_CONNECTOR, stepsLayout } from "./layout-helpers";
 import { Container } from "./primitives";
@@ -21,6 +21,31 @@ export function FeatureGrid({ features }: { features: Feature[] }) {
           </span>
           <h3 className="mt-4 font-semibold">{title}</h3>
           <p className="text-muted-foreground mt-2 text-sm">{description}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Small icon cards (icon + title + one-line description) in a 1 / 2 / 3 column grid. Each card
+ * spans two grid rows, so titles and descriptions line up across a row even when a title wraps.
+ */
+export function IconCardGrid({ items }: { items: HandledItem[] }) {
+  return (
+    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map(({ icon: Icon, title, description }) => (
+        <li
+          key={title}
+          className="border-border bg-card row-span-2 grid grid-rows-subgrid rounded-xl border p-5 shadow-sm"
+        >
+          <div className="flex items-start gap-3">
+            <span className="bg-primary/10 text-primary flex size-9 shrink-0 items-center justify-center rounded-lg">
+              <Icon className="size-4" aria-hidden />
+            </span>
+            <h3 className="pt-1.5 font-semibold">{title}</h3>
+          </div>
+          <p className="text-muted-foreground text-sm">{description}</p>
         </li>
       ))}
     </ul>
@@ -88,8 +113,12 @@ export function CheckList({ items, className }: { items: string[]; className?: s
   );
 }
 
+/** How many agents a solution card lists; the rest are summarized as "+N more agents". */
+const CARD_AGENT_LIMIT = 3;
+
 export function SolutionCard({ solution }: { solution: Solution }) {
   const { icon: Icon, name, tagline, agents, slug, accent } = solution;
+  const moreAgents = agents.length - CARD_AGENT_LIMIT;
   return (
     <Link
       href={solutionHref(slug)}
@@ -102,14 +131,19 @@ export function SolutionCard({ solution }: { solution: Solution }) {
       <h3 className="mt-5 text-xl font-semibold">{name}</h3>
       <p className="text-muted-foreground mt-2 text-sm">{tagline}</p>
       <ul className="mt-4 flex flex-col gap-1.5 text-sm">
-        {agents.slice(0, 3).map((agent) => (
+        {agents.slice(0, CARD_AGENT_LIMIT).map((agent) => (
           <li key={agent.name} className="flex gap-2">
             <Check className="text-success mt-0.5 size-4 shrink-0" aria-hidden />
             {agent.name}
           </li>
         ))}
       </ul>
-      <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-(--accent)">
+      {moreAgents > 0 ? (
+        <p className="text-muted-foreground mt-2 text-sm">
+          +{moreAgents} more {moreAgents === 1 ? "agent" : "agents"}
+        </p>
+      ) : null}
+      <span className="mt-auto inline-flex items-center gap-1 pt-6 text-sm font-medium text-(--accent)">
         Explore {name.toLowerCase()} solutions
         <ArrowRight
           className="size-4 transition-transform group-hover:translate-x-0.5"

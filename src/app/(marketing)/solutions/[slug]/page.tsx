@@ -2,11 +2,11 @@ import { ArrowRight, UserCheck } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CheckList, CtaBanner, Faq, Steps } from "@/components/marketing/blocks";
+import { CheckList, CtaBanner, Faq, IconCardGrid, Steps } from "@/components/marketing/blocks";
 import { JsonLd } from "@/components/marketing/json-ld";
 import { PageHero, Section } from "@/components/marketing/primitives";
 import { Button } from "@/components/ui/button";
-import { getSolution, SOLUTIONS } from "@/content/solutions";
+import { agentAnchor, getSolution, GOVERNANCE_ANCHOR, SOLUTIONS } from "@/content/solutions";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbLd, faqLd, serviceLd } from "@/lib/structured-data";
 
@@ -47,6 +47,7 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
         eyebrow={`${solution.name} solutions`}
         title={solution.headline}
         description={solution.summary}
+        note={solution.audience}
         actions={
           <>
             <Button asChild size="lg">
@@ -69,10 +70,19 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
         title={`What ${solution.name.toLowerCase()} teams are up against`}
       >
         <div className="grid gap-4 sm:grid-cols-2">
-          {solution.challenges.map(({ title, description }) => (
-            <div key={title} className="border-border bg-card rounded-xl border p-6">
+          {solution.challenges.map(({ title, description, link }) => (
+            <div key={title} className="border-border bg-card flex flex-col rounded-xl border p-6">
               <h3 className="font-semibold">{title}</h3>
               <p className="text-muted-foreground mt-2 text-sm">{description}</p>
+              {link ? (
+                <a
+                  href={`#${link.target}`}
+                  className="text-primary mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium hover:underline"
+                >
+                  {link.label}
+                  <ArrowRight className="size-4" aria-hidden />
+                </a>
+              ) : null}
             </div>
           ))}
         </div>
@@ -88,7 +98,8 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
           {solution.agents.map(({ icon: AgentIcon, ...agent }) => (
             <article
               key={agent.name}
-              className="border-border bg-card flex flex-col rounded-xl border p-6 shadow-sm"
+              id={agentAnchor(agent.name)}
+              className="border-border bg-card flex scroll-mt-24 flex-col rounded-xl border p-6 shadow-sm"
             >
               <div className="flex items-center gap-3">
                 <span className="bg-primary/10 text-primary flex size-9 items-center justify-center rounded-lg">
@@ -117,13 +128,20 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
         <Steps steps={solution.workflow.steps} />
       </Section>
 
-      <Section tone="muted">
+      <Section
+        tone="muted"
+        eyebrow={solution.handles.eyebrow}
+        title={solution.handles.title}
+        description={solution.handles.description}
+      >
+        <IconCardGrid items={solution.handles.items} />
+      </Section>
+
+      <Section id={GOVERNANCE_ANCHOR} className="scroll-mt-24">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">Governance & compliance</h2>
-            <p className="text-muted-foreground mt-2 text-sm">
-              Controls designed for {solution.name.toLowerCase()} requirements.
-            </p>
+            <p className="text-muted-foreground mt-2 text-sm">{solution.governanceNote}</p>
             <dl className="mt-6 flex flex-col gap-5">
               {solution.governance.map(({ title, description }) => (
                 <div key={title}>
@@ -152,7 +170,7 @@ export default async function SolutionPage({ params }: PageProps<"/solutions/[sl
         </div>
       </Section>
 
-      <Section eyebrow="FAQ" title={`${solution.name} questions`}>
+      <Section tone="muted" eyebrow="FAQ" title={`${solution.name} questions`}>
         <div className="max-w-3xl">
           <Faq items={solution.faqs} />
         </div>

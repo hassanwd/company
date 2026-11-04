@@ -63,7 +63,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Marketing backgrounds: a faint grid and glow in the primary colour, fading out downwards. */
+/* Marketing backgrounds: a faint grid and glow in the primary color, fading out downwards. */
 .bg-hero {
   background:
     radial-gradient(
