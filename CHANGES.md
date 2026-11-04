@@ -70,3 +70,14 @@ Work was done in five phases, one commit each on the `site-improvements` branch.
 - **Dark mode (Phase 3, item 7, optional):** skipped. The site was deliberately set to a white theme.
 - **Lighthouse:** not run (see the hand-off note). Run `npx lighthouse <url> --form-factor=mobile` against `npm run build && npm start` and fix anything below 95.
 - **Spelling:** the primary market was still `TODO`, so the existing British spelling was kept and checked for consistency. Switch to American spelling if you sell mainly in the US.
+
+## NDA review demo (Contract Review Agent)
+
+Internal console page at **`/nda-review`** (same access rule as `/dashboard`: on in development, off in production unless `ENABLE_CONSOLE=true`).
+
+- **Flow:** upload PDF / Word / .txt (or "Use sample NDA") → agent reads the NDA, compares 12 clauses with the playbook, drafts redlines with reasoning → attorney Approves / Edits / Rejects each change → audit trail → **Export Word** report.
+- **Playbook:** `src/features/nda-review/playbook.ts` (preferred / fallback / unacceptable / suggested language per clause). Replace per firm.
+- **Sample NDA:** `src/features/nda-review/sample-nda.ts` (fictional; 3 deviations, 1 critical, matching the homepage card).
+- **Model:** `LLM_MODE=mock` (default) uses deterministic rule checks, no model needed. `LLM_MODE=live` calls any OpenAI-compatible endpoint (`LLM_BASE_URL`, `LLM_MODEL`, `LLM_API_KEY`), e.g. vLLM serving `openai/gpt-oss-20b`. See `.env.example`.
+- **Storage:** in memory (`src/server/db/nda-reviews.repository.ts`), lost on restart. Swap for PostgreSQL (one DB/schema per firm) before a client pilot.
+- **New dependencies:** `mammoth` (Word), `unpdf` (PDF), `docx` (Word export). Scanned PDFs need OCR first.

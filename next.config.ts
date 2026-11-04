@@ -73,6 +73,7 @@ const nextConfig: NextConfig = {
       { source: "/:path*", headers: securityHeaders },
       { source: "/dashboard/:path*", headers: noIndexHeaders },
       { source: "/users/:path*", headers: noIndexHeaders },
+      { source: "/nda-review/:path*", headers: noIndexHeaders },
     ];
   },
 };

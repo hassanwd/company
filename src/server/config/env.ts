@@ -17,6 +17,17 @@ const envSchema = z.object({
   LEADS_TO_EMAIL: z.string().optional(),
   /** Reserved for a database sink. No database driver is bundled yet; see .env.example. */
   DATABASE_URL: z.string().optional(),
+  /**
+   * NDA review demo (console only). "mock" runs the built-in rule checks with no model;
+   * "live" calls an OpenAI-compatible endpoint such as vLLM serving gpt-oss.
+   */
+  LLM_MODE: z.enum(["mock", "live"]).default("mock"),
+  /** e.g. http://localhost:8000/v1 for vLLM, or https://api.openai.com/v1 */
+  LLM_BASE_URL: z.url().optional(),
+  /** Model name as the server knows it, e.g. openai/gpt-oss-20b */
+  LLM_MODEL: z.string().optional(),
+  /** Optional bearer token (vLLM --api-key, or a hosted API key). */
+  LLM_API_KEY: z.string().optional(),
   /** Plausible/Umami site domain. Analytics load only when this is set. */
   NEXT_PUBLIC_ANALYTICS_DOMAIN: z
     .string()
@@ -56,3 +67,12 @@ export const leadsEmailConfig = {
 export const leadsEmailConfigured = Boolean(
   leadsEmailConfig.apiKey && leadsEmailConfig.from && leadsEmailConfig.to.length > 0,
 );
+
+/** Settings for the NDA review agent's model. Server-only: never import from client code. */
+export const llmConfig = {
+  mode: env.LLM_MODE,
+  baseUrl: env.LLM_BASE_URL,
+  model: env.LLM_MODEL,
+  apiKey: env.LLM_API_KEY,
+  timeoutMs: 120_000,
+};

@@ -4,7 +4,7 @@ import { siteUrl } from "@/server/config/env";
 export default function robots(): MetadataRoute.Robots {
   return {
     // Public marketing site is indexable; the internal console is not.
-    rules: { userAgent: "*", allow: "/", disallow: ["/dashboard", "/users"] },
+    rules: { userAgent: "*", allow: "/", disallow: ["/dashboard", "/users", "/nda-review"] },
     sitemap: `${siteUrl}/sitemap.xml`,
   };
 }
