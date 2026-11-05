@@ -61,7 +61,7 @@ export const lawSolution: Solution = {
       name: "Legal Research Agent",
       icon: BookOpen,
       description:
-        "Searches your firm's own knowledge (past memos, briefs, precedents and templates) plus the research sources you already use, and answers with a link to every source.",
+        "Searches your firm's own internal knowledge (past memos, briefs, precedents, and templates) and answers with a link to every internal file.",
       checkpoint:
         "Every answer links to its source and date; the attorney verifies before relying on it.",
     },
@@ -82,12 +82,12 @@ export const lawSolution: Solution = {
         "Potential conflicts always escalate to the responsible partner; the agent never clears a conflict on its own.",
     },
     {
-      name: "Regulatory Monitoring Agent",
+      name: "Template & Policy Update Agent",
       icon: Radar,
       description:
-        "Watches the regulators and sources you choose for your practice areas, flags changes that affect your clients, finds the contracts and templates impacted, and drafts a short impact memo. Your team can add sources, adjust results or edit any memo at any time.",
+        "Whenever your firm updates its own internal rules or standard terms, click one button to scan your existing contracts and templates. The AI finds every document affected by your new rule and drafts a short summary of what needs updating.",
       checkpoint:
-        "An attorney reviews, edits and approves every memo before it reaches a client or changes a template.",
+        "An attorney reviews, edits, and approves every update before any template is changed.",
     },
     {
       name: "Document Review Agent",
@@ -181,8 +181,7 @@ export const lawSolution: Solution = {
     "E-signature platforms",
     "Email & calendar",
     "Virtual data rooms",
-    "Client intake forms & portals",
-    "Your existing research subscriptions",
+    "Client intake forms & portals"
   ],
   governanceNote: "Controls designed for law firms.",
   governance: [
@@ -212,9 +211,9 @@ export const lawSolution: Solution = {
         "Every retrieval, suggestion and approval is logged to the matter and exportable.",
     },
     {
-      title: "Deployment options",
+      title: "Data hosting & privacy",
       description:
-        "Choose where it runs: our managed cloud in the region you pick, your firm's own cloud account, or your own servers. Your data stays where your clients require it.",
+        "Your firm runs in a dedicated, isolated cloud environment. Your data stays encrypted, private, and never leaves your designated region.",
     },
   ],
   outcomes: [
@@ -238,12 +237,12 @@ export const lawSolution: Solution = {
     {
       question: "Where is our data stored?",
       answer:
-        "Wherever you choose. We can run it in our managed cloud in the region you pick, inside your firm's own cloud account, or on your own servers, and your data stays in that location.",
+        "Your firm runs in a dedicated, isolated cloud environment in your designated region. Your data stays encrypted, private, and never leaves that location.",
     },
     {
       question: "How do you handle made-up citations?",
       answer:
-        "Every answer is based on real documents, and each citation links to its source so you can check it. Anything the agent can't back up is flagged, not stated as fact.",
+        "Every answer is based on your firm's internal documents, and each citation links directly to the source file so you can check it. Anything the agent can't back up is flagged, not stated as fact.",
     },
     {
       question: "Can it follow our firm's own playbook?",
